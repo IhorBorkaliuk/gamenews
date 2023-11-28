@@ -10,7 +10,7 @@ export function PostsList({ posts }) {
       {posts.map((el, index) => (
         <Col key={index} className="d-flex">
           <Card className="flex-fill">
-            <img variant="top" src={el.main_image} />
+            <img variant="top" src={el.main_image} alt={el.short_description} />
             <CardLink href={el.article_url} target="_blank">
               {' '}
               <Card.Body>
