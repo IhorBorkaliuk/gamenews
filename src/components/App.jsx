@@ -1,31 +1,22 @@
-import API from "services/API";
-
-
-
+import { useState, useEffect } from 'react';
+import API from 'services/API';
+import { PostsList } from './Posts/Posts';
 
 export const App = () => {
-  const loadGames = async(game) => {
-    try {
-      const result = await API(game)
-      const data = result
-      console.log(data);
-    } catch (error) {
-      
-    }
-  }
-  loadGames()
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const loadGames = async () => {
+      try {
+        const result = await API();
+        setPosts([...result]);
+      } catch (error) {}
+    };
+    loadGames();
+  }, []);
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <PostsList posts={posts} />
     </div>
   );
 };
