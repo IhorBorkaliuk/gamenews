@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = async query => {
+const API = async () => {
 
 const options = {
   method: 'GET',
