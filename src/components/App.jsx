@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import API from 'services/API';
-import { PostsList } from './Posts/Posts';
+import NavBar from './NavBar/NavBar';
+const LazyPostsList = lazy(() => import('./Posts/Posts'));
 
 export const App = () => {
   const [posts, setPosts] = useState([]);
@@ -16,7 +17,10 @@ export const App = () => {
   }, []);
   return (
     <div>
-      <PostsList posts={posts} />
+      <NavBar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyPostsList posts={posts} />
+      </Suspense>
     </div>
   );
 };

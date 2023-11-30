@@ -2,11 +2,12 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { CardLink } from './PostsStyled';
+import React from 'react';
 
-export function PostsList({ posts }) {
+const PostsList = ({ posts }) => {
   console.log(posts);
   return (
-    <Row xs={1} md={4} className="g-4">
+    <Row xs={1} md={4} className="g-4, mt-4">
       {posts.map((el, index) => (
         <Col key={index} className="d-flex">
           <Card className="flex-fill">
@@ -23,4 +24,6 @@ export function PostsList({ posts }) {
       ))}
     </Row>
   );
-}
+};
+
+export default PostsList;
