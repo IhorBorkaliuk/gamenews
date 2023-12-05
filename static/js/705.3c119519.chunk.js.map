@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/705.3c119519.chunk.js","mappings":"8LAEO,MAAMA,EAAQA,KAEjBC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,UAIT,G","sources":["components/Games/Games.jsx"],"sourcesContent":["import React from 'react'\n\nexport const Games = () => {\n  return (\n    <div>games</div>\n  )\n}\n\nexport default Games\n"],"names":["Games","_jsx","children"],"sourceRoot":""}
