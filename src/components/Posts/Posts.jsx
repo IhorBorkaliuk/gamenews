@@ -6,31 +6,35 @@ import Row from 'react-bootstrap/Row';
 import { CardLink } from './PostsStyled';
 import SearchBar from 'components/SearchBar/SearchBar';
 
-const PostsList = ({ filteredPosts }) => {
+const PostsList = () => {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
-    const loadGames = async () => {
+    const loadPosts = async () => {
       try {
-        if (filteredPosts.length > 0) {
-          // Якщо є фільтровані дописи, використовуйте їх замість завантаження нових
-          setPosts(filteredPosts);
-        } else {
-          const result = await API();
-          setPosts(result);
-        }
+        const result = await API();
+        setPosts(result);
       } catch (error) {
         console.error(error);
       }
     };
 
-    loadGames();
-  }, [filteredPosts]);
+    loadPosts();
+  }, []);
+
+  const handleSearch = searchTerm => {
+    const filtered = posts.filter(el =>
+      el.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredPosts(filtered);
+  };
+
   return (
     <div>
-      <SearchBar posts={posts}></SearchBar>
+      <SearchBar onSearch={handleSearch} />
       <Row xs={1} md={4} className="g-4 mt-4">
-        {posts.map((el, index) => (
+        {(filteredPosts.length > 0 ? filteredPosts : posts).map((el, index) => (
           <Col key={index} className="d-flex">
             <Card className="flex-fill">
               <img

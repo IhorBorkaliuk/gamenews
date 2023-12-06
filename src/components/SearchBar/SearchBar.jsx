@@ -1,27 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { InputSearch, SearchBarWrapper } from './StyledSearchBar';
 
-export const SearchBar = ({ posts }) => {
+const SearchBar = ({ onSearch }) => {
+  const [search, setSearch] = useState('');
 
-    const [search, setSearch] = useState('')
-    
-  const handleSearch = (evt) => {
-        const search = evt.target.value
-        setSearch(search)
-    }
-console.log(posts);
-const filteredPosts = posts.filter(el => {
-  return el.title.toLowerCase().includes(search.toLowerCase());
-});
-    console.log(filteredPosts)
+  const handleSearch = evt => {
+    const searchTerm = evt.target.value;
+    setSearch(searchTerm);
+    onSearch(searchTerm); // Передача значення пошуку назад у батьківський компонент
+  };
 
   return (
-    <SearchBarWrapper filteredPosts={filteredPosts}>
-<InputSearch placeholder='Введіть запит...' onChange={handleSearch} value={search} ></InputSearch>
+    <SearchBarWrapper>
+      <InputSearch
+        placeholder="Введіть запит..."
+        onChange={handleSearch}
+        value={search}
+      />
     </SearchBarWrapper>
   );
-}
+};
 
-export default SearchBar
-
-
+export default SearchBar;
