@@ -27,7 +27,11 @@ const PostsList = () => {
     const filtered = posts.filter(el =>
       el.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredPosts(filtered);
+    if (filtered.length > 0 && searchTerm.trim() !== '') {
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts([]);
+    }
   };
 
   return (
