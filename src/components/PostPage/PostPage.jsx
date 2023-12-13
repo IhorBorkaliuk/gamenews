@@ -8,7 +8,11 @@ import { Image, Title, Wrapper, Paragraph, Link } from './PostPageStyled';
 const PostPage = () => {
 
   const location = useLocation();
-  const { state } = location;
+    const { state } = location;
+    if (!state || !state.el) {
+      // Обробка випадку, коли дані відсутні або неправильні
+      return <div>Data not available</div>;
+    }
     const el = state ? state.el : null;
     console.log(el);
     const article = el.article_content; 

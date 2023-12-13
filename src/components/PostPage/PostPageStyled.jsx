@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-  color: #333;
-  margin-top: 20px;
+  max-width: 1200px; /* Максимальна ширина контейнера */
+  margin: 0 auto; /* Центрування контейнера на сторінці */
+  padding: 20px; /* Внутрішній відступ для контенту */
 `;
 
 export const Image = styled.img`
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: 500px;
+  width: 100%;
+  max-height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  
 `;
 
 export const Title = styled.h2`
@@ -29,14 +28,19 @@ export const Title = styled.h2`
 `;
 
 export const Paragraph = styled.p`
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
   margin-bottom: 20px;
-  text-align: justify;
 `;
 
 export const Link = styled.a`
-  color: #007bff; 
-  text-decoration: none; 
-  cursor: pointer; 
+  text-decoration: none;
+  color: #007bff;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &:hover {
     text-decoration: underline;
