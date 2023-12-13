@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { StyledNavLink } from './PostCardStyled';
 
 
 export const PostCard = ({ el }) => {
@@ -12,7 +13,7 @@ export const PostCard = ({ el }) => {
 return (
   <Card className="h-100" onClick={handleClick}>
     <Card.Img variant="top" src={el.main_image} alt={el.short_description} />
-    <NavLink
+    <StyledNavLink
       to={`/${el.id}`}
       rel="noopener noreferrer"
       className="stretched-link"
@@ -21,7 +22,7 @@ return (
         <Card.Title>{el.title}</Card.Title>
         <Card.Text>{el.short_description}</Card.Text>
       </Card.Body>
-    </NavLink>
+    </StyledNavLink>
   </Card>
 );
 }
