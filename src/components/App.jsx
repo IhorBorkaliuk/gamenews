@@ -2,7 +2,8 @@ import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 import NavBar from './NavBar/NavBar';
 
-const PostsList = lazy(() => import('./Posts/Posts'));
+const PostsList = lazy(() => import('./PostsList/PostsList'));
+const PostPage = lazy(() => import('./PostPage/PostPage'))
 const NotFound = lazy(() => import('./NotFound/NotFound'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Games = lazy(() => import('./Games/Games'));
@@ -15,6 +16,7 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<PostsList />} />
+          <Route path="/:id" element={<PostPage />} />
           <Route path="/games" element={<Games />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/giveaways" element={<Giveaways />} />

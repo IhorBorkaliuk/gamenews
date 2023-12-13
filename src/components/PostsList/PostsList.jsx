@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import API from 'services/API';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+
 import SearchBar from 'components/SearchBar/SearchBar';
-import OnePost from 'components/OnePost/OnePost';
+import PostCard from 'components/PostCard/PostCard';
 import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
 
 const PostsList = () => {
@@ -16,6 +17,7 @@ const PostsList = () => {
       try {
         const result = await API();
         setPosts(result);
+            console.log(result);
       } catch (error) {
         console.error(error);
       }
@@ -38,18 +40,19 @@ const PostsList = () => {
       <Row xs={1} md={4} className="g-4 mt-4 d-flex align-items-stretch">
         {searchTerm && filteredPosts.length === 0 ? (
           <Col>
-            <NoPostsFound searchTerm={searchTerm}/>
+            <NoPostsFound searchTerm={searchTerm} />
           </Col>
         ) : (
           (filteredPosts.length > 0 ? filteredPosts : posts).map(
             (el, index) => (
               <Col key={index}>
-                <OnePost el={el}></OnePost>
+                <PostCard el={el}></PostCard>
               </Col>
             )
-          )
+            )
         )}
       </Row>
+
     </div>
   );
 };
