@@ -1,27 +1,31 @@
 {
   "files": {
     "main.css": "/gamenews/static/css/main.3515ca5d.css",
-    "main.js": "/gamenews/static/js/main.8fff6ea1.js",
-    "static/js/881.39bd63f1.chunk.js": "/gamenews/static/js/881.39bd63f1.chunk.js",
-    "static/js/603.be99df87.chunk.js": "/gamenews/static/js/603.be99df87.chunk.js",
+    "main.js": "/gamenews/static/js/main.9b1d7e3c.js",
+    "static/js/114.95920401.chunk.js": "/gamenews/static/js/114.95920401.chunk.js",
+    "static/js/697.9e4864e4.chunk.js": "/gamenews/static/js/697.9e4864e4.chunk.js",
     "static/js/216.79a19c1e.chunk.js": "/gamenews/static/js/216.79a19c1e.chunk.js",
     "static/js/186.14e6ed17.chunk.js": "/gamenews/static/js/186.14e6ed17.chunk.js",
     "static/js/705.3c119519.chunk.js": "/gamenews/static/js/705.3c119519.chunk.js",
     "static/js/641.5d758c0f.chunk.js": "/gamenews/static/js/641.5d758c0f.chunk.js",
-    "static/js/315.360799f3.chunk.js": "/gamenews/static/js/315.360799f3.chunk.js",
+    "static/js/608.ae9f35be.chunk.js": "/gamenews/static/js/608.ae9f35be.chunk.js",
+    "static/js/106.5336daae.chunk.js": "/gamenews/static/js/106.5336daae.chunk.js",
+    "static/js/703.b4cd0688.chunk.js": "/gamenews/static/js/703.b4cd0688.chunk.js",
     "index.html": "/gamenews/index.html",
     "main.3515ca5d.css.map": "/gamenews/static/css/main.3515ca5d.css.map",
-    "main.8fff6ea1.js.map": "/gamenews/static/js/main.8fff6ea1.js.map",
-    "881.39bd63f1.chunk.js.map": "/gamenews/static/js/881.39bd63f1.chunk.js.map",
-    "603.be99df87.chunk.js.map": "/gamenews/static/js/603.be99df87.chunk.js.map",
+    "main.9b1d7e3c.js.map": "/gamenews/static/js/main.9b1d7e3c.js.map",
+    "114.95920401.chunk.js.map": "/gamenews/static/js/114.95920401.chunk.js.map",
+    "697.9e4864e4.chunk.js.map": "/gamenews/static/js/697.9e4864e4.chunk.js.map",
     "216.79a19c1e.chunk.js.map": "/gamenews/static/js/216.79a19c1e.chunk.js.map",
     "186.14e6ed17.chunk.js.map": "/gamenews/static/js/186.14e6ed17.chunk.js.map",
     "705.3c119519.chunk.js.map": "/gamenews/static/js/705.3c119519.chunk.js.map",
     "641.5d758c0f.chunk.js.map": "/gamenews/static/js/641.5d758c0f.chunk.js.map",
-    "315.360799f3.chunk.js.map": "/gamenews/static/js/315.360799f3.chunk.js.map"
+    "608.ae9f35be.chunk.js.map": "/gamenews/static/js/608.ae9f35be.chunk.js.map",
+    "106.5336daae.chunk.js.map": "/gamenews/static/js/106.5336daae.chunk.js.map",
+    "703.b4cd0688.chunk.js.map": "/gamenews/static/js/703.b4cd0688.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3515ca5d.css",
-    "static/js/main.8fff6ea1.js"
+    "static/js/main.9b1d7e3c.js"
   ]
 }
