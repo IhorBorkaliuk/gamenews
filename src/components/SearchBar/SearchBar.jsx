@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { InputSearch, SearchBarWrapper } from './StyledSearchBar';
 
-const SearchBar = ({ onSearch }) => {
-  const [search, setSearch] = useState('');
+const SearchBar = ({ setSearchParam }) => {
 
-  const handleSearch = evt => {
-    const searchTerm = evt.target.value;
-    setSearch(searchTerm);
-    onSearch(searchTerm); // Передача значення пошуку назад у батьківський компонент
+  const handleSearch = ({target}) => {
+    setSearchParam({search: target.value})
   };
 
   return (
@@ -15,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
       <InputSearch
         placeholder="Введіть запит..."
         onChange={handleSearch}
-        value={search}
+        // value={search}
       />
     </SearchBarWrapper>
   );

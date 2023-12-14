@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import API from 'services/API';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,8 +10,11 @@ import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+
+  const [searchParam, setSearchParam] = useSearchParams();
+  const query = searchParam.get('search') ?? ''
+    console.log(query);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -26,21 +30,21 @@ const PostsList = () => {
     loadPosts();
   }, []);
 
-  const handleSearch = searchTerm => {
-    setSearchTerm(searchTerm);
-    const filtered = posts.filter(el =>
-      el.title.toLowerCase().includes(searchTerm.toLowerCase())
+  useEffect(() => {
+    setFilteredPosts(
+      posts.filter(el => el.title.toLowerCase().includes(query.toLowerCase()))
     );
-    setFilteredPosts(filtered);
-  };
+  
+  }, [searchParam, posts, query])
+  
 
   return (
     <div>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar setSearchParam={setSearchParam} />
       <Row xs={1} md={4} className="g-4 mt-4 d-flex align-items-stretch">
-        {searchTerm && filteredPosts.length === 0 ? (
+        {searchParam && filteredPosts.length === 0 ? (
           <Col>
-            <NoPostsFound searchTerm={searchTerm} />
+            <NoPostsFound searchParam={searchParam} />
           </Col>
         ) : (
           (filteredPosts.length > 0 ? filteredPosts : posts).map(
@@ -49,10 +53,9 @@ const PostsList = () => {
                 <PostCard el={el}></PostCard>
               </Col>
             )
-            )
+          )
         )}
       </Row>
-
     </div>
   );
 };
