@@ -10,11 +10,12 @@ import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   const [searchParam, setSearchParam] = useSearchParams();
+
   const query = searchParam.get('search') ?? ''
-    console.log(query);
+  console.log(query);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -40,7 +41,7 @@ const PostsList = () => {
 
   return (
     <div>
-      <SearchBar setSearchParam={setSearchParam} />
+      <SearchBar setSearchParam={setSearchParam} query={query} />
       <Row xs={1} md={4} className="g-4 mt-4 d-flex align-items-stretch">
         {searchParam && filteredPosts.length === 0 ? (
           <Col>

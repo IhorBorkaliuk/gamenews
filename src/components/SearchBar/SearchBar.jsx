@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputSearch, SearchBarWrapper } from './StyledSearchBar';
 
-const SearchBar = ({ setSearchParam }) => {
+const SearchBar = ({ setSearchParam, query }) => {
 
   const handleSearch = ({target}) => {
     setSearchParam({search: target.value})
@@ -12,6 +12,7 @@ const SearchBar = ({ setSearchParam }) => {
       <InputSearch
         placeholder="Введіть запит..."
         onChange={handleSearch}
+        value={query}
       />
     </SearchBarWrapper>
   );
