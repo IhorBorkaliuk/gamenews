@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 import NavBar from './NavBar/NavBar';
+import LoaderExampleInlineCentered from './Loader/Loader';
 
 const PostsList = lazy(() => import('./PostsList/PostsList'));
 const PostPage = lazy(() => import('./PostPage/PostPage'))
@@ -13,7 +14,9 @@ export const App = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={<LoaderExampleInlineCentered></LoaderExampleInlineCentered>}
+      >
         <Routes>
           <Route path="/" element={<PostsList />} />
           <Route path="/:id" element={<PostPage />} />

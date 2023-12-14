@@ -1,19 +1,14 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { useNavigate } from 'react-router-dom';
 import { StyledNavLink } from './PostCardStyled';
 
 export const PostCard = ({ el }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/${el.id}`, { state: { el } });
-  };
   return (
-    <Card className="h-100" onClick={handleClick}>
+    <Card className="h-100" >
       <Card.Img variant="top" src={el.main_image} alt={el.short_description} />
       <StyledNavLink
         to={'/:id'}
+        state={el}
         rel="noopener noreferrer"
         className="stretched-link"
       >
