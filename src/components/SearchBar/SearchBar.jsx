@@ -12,7 +12,6 @@ const SearchBar = ({ setSearchParam }) => {
       <InputSearch
         placeholder="Введіть запит..."
         onChange={handleSearch}
-        // value={search}
       />
     </SearchBarWrapper>
   );
