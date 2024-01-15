@@ -9,6 +9,7 @@ const NotFound = lazy(() => import('./NotFound/NotFound'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Games = lazy(() => import('./Games/Games'));
 const Giveaways = lazy(() => import('./Giveaways/Giveaways'));
+const GamePage = lazy(() => import('./GamePage/GamePage'))
 
 export const App = () => {
   return (
@@ -21,6 +22,7 @@ export const App = () => {
           <Route path="/" element={<PostsList />} />
           <Route path="/:id" element={<PostPage />} />
           <Route path="/games" element={<Games />} />
+          <Route path="games/:id" element={<GamePage />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/giveaways" element={<Giveaways />} />
           <Route path="*" element={<NotFound />} />

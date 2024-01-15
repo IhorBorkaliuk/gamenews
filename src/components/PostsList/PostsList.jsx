@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import API from 'services/API';
+import { API } from 'services/API';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
@@ -15,14 +15,12 @@ const PostsList = () => {
   const [searchParam, setSearchParam] = useSearchParams();
 
   const query = searchParam.get('search') ?? ''
-  console.log(query);
 
   useEffect(() => {
     const loadPosts = async () => {
       try {
         const result = await API();
         setPosts(result);
-            console.log(result);
       } catch (error) {
         console.error(error);
       }
@@ -43,7 +41,7 @@ const PostsList = () => {
     <div>
       <SearchBar setSearchParam={setSearchParam} query={query} />
       <Row xs={1} md={4} className="g-4 mt-4 d-flex align-items-stretch">
-        {searchParam && filteredPosts.length === 0 ? (
+        {searchParam && query && filteredPosts.length === 0 ? (
           <Col>
             <NoPostsFound searchParam={searchParam} />
           </Col>
@@ -51,7 +49,7 @@ const PostsList = () => {
           (filteredPosts.length > 0 ? filteredPosts : posts).map(
             (el, index) => (
               <Col key={index}>
-                <PostCard el={el}></PostCard>
+                <PostCard el={el}></PostCard> 
               </Col>
             )
           )

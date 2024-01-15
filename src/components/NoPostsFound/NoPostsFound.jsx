@@ -1,11 +1,12 @@
 import React from 'react';
 import { NoNewsMessageContainer, NoNewsMessageText } from './StyledNoPostsFound';
 
-const NoPostsFound = ({ searchTerm }) => {
+const NoPostsFound = ({ searchParam }) => {
+  console.log(searchParam);
   return (
     <NoNewsMessageContainer style={{ textAlign: 'center', width: '100%' }}>
       <NoNewsMessageText>
-        Новин за запитом "{searchTerm}" не знайдено.
+        Новин за запитом "{searchParam}" не знайдено.
       </NoNewsMessageText>
     </NoNewsMessageContainer>
   );
