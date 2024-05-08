@@ -40,7 +40,7 @@ const PostsList = () => {
   return (
     <div>
       <SearchBar setSearchParam={setSearchParam} query={query} />
-      <Row xs={1} md={4} className="g-4 mt-4 d-flex align-items-stretch">
+      <Row xs={1} md={3} className="g-3 mt-3 d-flex align-items-stretch">
         {searchParam && query && filteredPosts.length === 0 ? (
           <Col>
             <NoPostsFound searchParam={searchParam} />

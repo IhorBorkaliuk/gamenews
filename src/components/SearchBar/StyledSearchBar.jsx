@@ -27,4 +27,5 @@ margin-top: 15px;
 
 export const SearchBarWrapper = styled.div`
     text-align: center;
+    margin-bottom: 30px;
 `;

@@ -7,7 +7,7 @@ export const PostCard = ({ el }) => {
     <Card className="h-100" >
       <Card.Img variant="top" src={el.main_image} alt={el.short_description} />
       <StyledNavLink
-        to={'/:id'}
+        to={`/${el.id}`}
         state={el}
         rel="noopener noreferrer"
         className="stretched-link"
