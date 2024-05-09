@@ -9,51 +9,56 @@ import SearchBar from 'components/SearchBar/SearchBar';
 
 export const Games = () => {
   const [games, setGames] = useState([]);
-  const [filteredGames, setFilteredGames] = useState([]);
   const [searchParam, setSearchParam] = useSearchParams();
+  const [loadedGames, setLoadedGames] = useState(20)
 
   useEffect(() => {
     const loadGames = async () => {
       try {
         const result = await APIGames();
         setGames(result);
-      } catch (error) {}
+      } catch (error) {
+        console.error('Помилка при завантаженні ігор: ', error);
+      }
     };
     loadGames();
   }, []);
-  console.log(games);
+
+  const loadmore = () => {
+    setLoadedGames(prevState => prevState + 20)
+  }
+
+
+
+
 
   const queryGames = searchParam.get('search') ?? '';
-  console.log(queryGames);
-
-  useEffect(() => {
-    setFilteredGames(
-      games.filter(el =>
-        el.title.toLowerCase().includes(queryGames.toLowerCase())
-      )
-    );
-  }, [searchParam, queryGames, games]);
-
-  console.log(filteredGames);
+  const filteredGames = games.filter(el =>
+    el.title.toLowerCase().includes(queryGames.toLowerCase())
+  );
+  const displayedGames = queryGames
+    ? filteredGames
+    : games.slice(0, loadedGames);
+  
+  console.log(displayedGames);
 
   return (
     <div>
       <SearchBar queryGames={queryGames} setSearchParam={setSearchParam} />
-      <Row xs={1} md={3} className="g-3 mt-3 d-flex align-items-stretch">
-        {searchParam && queryGames && filteredGames.length === 0 ? (
+      <Row xs={1} md={4} className="g-3 mt-3 d-flex align-items-stretch">
+        {displayedGames.length === 0 ? (
           <Col>
-            <NoPostsFound searchParam={searchParam} />
+            <NoPostsFound searchParam={queryGames} />
           </Col>
         ) : (
-          (filteredGames.length > 0 ? filteredGames : games).map(
-            (el, index) => (
-              <Col key={index}>
-                <GameCard el={el}></GameCard>
-              </Col>
-            )
-          )
+          displayedGames.map((el, index) => (
+            <Col key={index}>
+              <GameCard el={el}></GameCard>
+            </Col>
+          ))
         )}
       </Row>
+      <button onClick={loadmore}>Load more</button>
     </div>
   );
 };
