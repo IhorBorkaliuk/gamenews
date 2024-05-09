@@ -31,8 +31,8 @@ export const Games = () => {
     setLoadedGames(prevState => prevState + 20);
   };
 
-  const handleFilterChange = selectedOption => {
-    setSelectedGenre(selectedOption);
+  const handleFilterChange = option => {
+    setSelectedGenre(option);
   };
 
   const queryGames = searchParam.get('search') ?? '';

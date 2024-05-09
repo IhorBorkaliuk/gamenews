@@ -14,10 +14,10 @@ const FilterDropdown = ({ genres,  onChange}) => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = selectedOption => {
-    setSelectedOption(selectedOption);
+  const handleOptionClick = option => {
+    setSelectedOption(option);
     setIsOpen(false);
-    onChange(selectedOption); // Передаємо значення до батьківського компоненту
+    onChange(option); // Передаємо значення до батьківського компоненту
     };
     console.log(selectedOption);
     
