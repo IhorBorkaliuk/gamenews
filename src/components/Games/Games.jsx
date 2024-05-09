@@ -12,7 +12,8 @@ import FilterDropdown from 'components/Filter/Filter';
 export const Games = () => {
   const [games, setGames] = useState([]);
   const [searchParam, setSearchParam] = useSearchParams();
-  const [loadedGames, setLoadedGames] = useState(20)
+  const [loadedGames, setLoadedGames] = useState(20);
+  const [selectedGenre, setSelectedGenre] = useState(null); // Додано стан для збереження обраного жанру
 
   useEffect(() => {
     const loadGames = async () => {
@@ -27,25 +28,33 @@ export const Games = () => {
   }, []);
 
   const loadmore = () => {
-    setLoadedGames(prevState => prevState + 20)
-  }
+    setLoadedGames(prevState => prevState + 20);
+  };
 
+  const handleFilterChange = selectedOption => {
+    setSelectedGenre(selectedOption);
+  };
 
   const queryGames = searchParam.get('search') ?? '';
   const filteredGames = games.filter(el =>
     el.title.toLowerCase().includes(queryGames.toLowerCase())
   );
+    const sortedByGenre = games.filter(el => el.genre === selectedGenre);
+    console.log(sortedByGenre);
   const displayedGames = queryGames
     ? filteredGames
-    : games.slice(0, loadedGames);
-  
-  const genres = games.map(game => game.genre).filter((game, index, games) => games.indexOf(game)===index)
-  console.log(genres);
+    : sortedByGenre.length === 0
+    ? games.slice(0, loadedGames)
+    : sortedByGenre;
+
+  const genres = games
+    .map(game => game.genre)
+    .filter((game, index, games) => games.indexOf(game) === index);
 
   return (
     <div>
       <SearchBar queryGames={queryGames} setSearchParam={setSearchParam} />
-      <FilterDropdown genres={genres} />
+      <FilterDropdown genres={genres} onChange={handleFilterChange} />
       <Row xs={1} md={4} className="g-3 mt-3 d-flex align-items-stretch">
         {displayedGames.length === 0 ? (
           <Col>

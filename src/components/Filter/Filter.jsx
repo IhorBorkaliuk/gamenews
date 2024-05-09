@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { DropdownContainer, DropdownHeader, DropdownItem, DropdownList } from './FilterStyled';
+import {
+  DropdownContainer,
+  DropdownHeader,
+  DropdownItem,
+  DropdownList,
+} from './FilterStyled';
 
-const FilterDropdown = ({ genres }) => {
+const FilterDropdown = ({ genres,  onChange}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -9,10 +14,14 @@ const FilterDropdown = ({ genres }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = option => {
-    setSelectedOption(option);
+  const handleOptionClick = selectedOption => {
+    setSelectedOption(selectedOption);
     setIsOpen(false);
-  };
+    onChange(selectedOption); // Передаємо значення до батьківського компоненту
+    };
+    console.log(selectedOption);
+    
+
 
   return (
     <DropdownContainer>
