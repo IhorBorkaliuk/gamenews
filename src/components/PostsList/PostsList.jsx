@@ -7,14 +7,16 @@ import Row from 'react-bootstrap/Row';
 import SearchBar from 'components/SearchBar/SearchBar';
 import PostCard from 'components/PostCard/PostCard';
 import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
+import { LoadMore } from 'components/Games/GamesStyled';
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [startedPosts, setStartedPosts] = useState(20);
 
   const [searchParam, setSearchParam] = useSearchParams();
 
-  const query = searchParam.get('search') ?? ''
+  const query = searchParam.get('search') ?? '';
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -33,9 +35,16 @@ const PostsList = () => {
     setFilteredPosts(
       posts.filter(el => el.title.toLowerCase().includes(query.toLowerCase()))
     );
-  
-  }, [searchParam, posts, query])
-  
+  }, [searchParam, posts, query]);
+
+  const loadMorePosts = () => {
+    setStartedPosts(prevState => prevState + 20);
+  };
+
+  const postsToDisplay = filteredPosts.length > 0 ? filteredPosts : posts;
+  const showLoadMore = startedPosts < postsToDisplay.length;
+
+  console.log(startedPosts);
 
   return (
     <div>
@@ -46,15 +55,14 @@ const PostsList = () => {
             <NoPostsFound searchParam={searchParam} />
           </Col>
         ) : (
-          (filteredPosts.length > 0 ? filteredPosts : posts).map(
-            (el, index) => (
-              <Col key={index}>
-                <PostCard el={el}></PostCard> 
-              </Col>
-            )
-          )
+          postsToDisplay.slice(0, startedPosts).map((el, index) => (
+            <Col key={index}>
+              <PostCard el={el}></PostCard>
+            </Col>
+          ))
         )}
       </Row>
+      {showLoadMore && <LoadMore onClick={loadMorePosts}>Load more</LoadMore>}
     </div>
   );
 };
