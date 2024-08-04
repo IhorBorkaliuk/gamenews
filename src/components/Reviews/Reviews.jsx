@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import SearchGames from "./SearchGames";
 
-export const Reviews = () => {
-  const [reviews, setReviews] = useState([])
+export const Reviews = ({games}) => {
+
+
   return (
-    <div>Reviews</div>
-  )
-}
+    <div>
+      <SearchGames games={games}/>
+    </div>
+  );
+};
 
-export default Reviews
+export default Reviews;

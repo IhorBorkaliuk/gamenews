@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { APIGames } from 'services/API';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { LoadMore } from './GamesStyled';
@@ -9,23 +8,10 @@ import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
 import SearchBar from 'components/SearchBar/SearchBar';
 import FilterDropdown from 'components/Filter/Filter';
 
-export const Games = () => {
-  const [games, setGames] = useState([]);
+export const Games = ({ games, setGames }) => {
   const [searchParam, setSearchParam] = useSearchParams();
   const [loadedGames, setLoadedGames] = useState(20);
-  const [selectedGenre, setSelectedGenre] = useState(null); // Додано стан для збереження обраного жанру
-
-  useEffect(() => {
-    const loadGames = async () => {
-      try {
-        const result = await APIGames();
-        setGames(result);
-      } catch (error) {
-        console.error('Помилка при завантаженні ігор: ', error);
-      }
-    };
-    loadGames();
-  }, []);
+  const [selectedGenre, setSelectedGenre] = useState(null);
 
   const loadmore = () => {
     setLoadedGames(prevState => prevState + 20);
@@ -39,8 +25,7 @@ export const Games = () => {
   const filteredGames = games.filter(el =>
     el.title.toLowerCase().includes(queryGames.toLowerCase())
   );
-    const sortedByGenre = games.filter(el => el.genre === selectedGenre);
-    console.log(sortedByGenre);
+  const sortedByGenre = games.filter(el => el.genre === selectedGenre);
   const displayedGames = queryGames
     ? filteredGames
     : sortedByGenre.length === 0

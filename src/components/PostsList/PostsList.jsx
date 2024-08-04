@@ -44,7 +44,6 @@ const PostsList = () => {
   const postsToDisplay = filteredPosts.length > 0 ? filteredPosts : posts;
   const showLoadMore = startedPosts < postsToDisplay.length;
 
-  console.log(startedPosts);
 
   return (
     <div>

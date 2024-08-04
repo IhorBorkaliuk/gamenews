@@ -19,7 +19,6 @@ const FilterDropdown = ({ genres,  onChange}) => {
     setIsOpen(false);
     onChange(option); // Передаємо значення до батьківського компоненту
     };
-    console.log(selectedOption);
     
 
 
@@ -30,8 +29,11 @@ const FilterDropdown = ({ genres,  onChange}) => {
       </DropdownHeader>
       {isOpen && (
         <DropdownList>
-          {genres.map((option, index) => (
-            <DropdownItem key={index} onClick={() => handleOptionClick(option)}>
+          {genres.map(option => (
+            <DropdownItem
+              key={option}
+              onClick={() => handleOptionClick(option)}
+            >
               {option}
             </DropdownItem>
           ))}
