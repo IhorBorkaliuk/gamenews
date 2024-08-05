@@ -1,11 +1,14 @@
 import React from 'react';
-import { NoNewsMessageContainer, NoNewsMessageText } from './StyledNoPostsFound';
+import {
+  NoNewsMessageContainer,
+  NoNewsMessageText,
+} from './StyledNoPostsFound';
 
-const NoPostsFound = ({ searchParam }) => {
+const NoPostsFound = ({ query }) => {
   return (
-    <NoNewsMessageContainer style={{ textAlign: 'center', width: '100%' }}>
+    <NoNewsMessageContainer>
       <NoNewsMessageText>
-        Новин за запитом "{searchParam}" не знайдено.
+        Новин за запитом '{query}' не знайдено.
       </NoNewsMessageText>
     </NoNewsMessageContainer>
   );

@@ -16,7 +16,7 @@ const PostsList = () => {
 
   const [searchParam, setSearchParam] = useSearchParams();
 
-  const query = searchParam.get('search') ?? '';
+  const query = searchParam.get('search') || '';
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -44,15 +44,12 @@ const PostsList = () => {
   const postsToDisplay = filteredPosts.length > 0 ? filteredPosts : posts;
   const showLoadMore = startedPosts < postsToDisplay.length;
 
-
   return (
     <div>
       <SearchBar setSearchParam={setSearchParam} query={query} />
       <Row xs={1} md={3} className="g-3 mt-3 d-flex align-items-stretch">
-        {searchParam && query && filteredPosts.length === 0 ? (
-          <Col>
-            <NoPostsFound searchParam={searchParam} />
-          </Col>
+        {query && filteredPosts.length === 0 ? (
+            <NoPostsFound query={query} />
         ) : (
           postsToDisplay.slice(0, startedPosts).map((el, index) => (
             <Col key={index}>
