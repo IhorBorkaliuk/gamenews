@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import SearchGames from "./Form";
 
 export const Reviews = ({games}) => {
-  const [reviews, setReviews] = useState([])
+  // const [reviews, setReviews] = useState([])
   
-  
+
 
   return (
     <div>
