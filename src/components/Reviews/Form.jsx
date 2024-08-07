@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {
   SearchDropdownContainer,
   DropdownItem,
@@ -9,7 +10,7 @@ import {
   SubmitButton,
 } from './FormStyled';
 
-export const SearchGames = ({ games }) => {
+export const CommentForm = ({ games, onSubmit }) => {
   const [choosenGame, setChoosenGame] = useState('');
   const [filteredGames, setFilteredGames] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -34,14 +35,12 @@ export const SearchGames = ({ games }) => {
   }, [choosenGame, games]);
 
   const handleBlur = useCallback(() => {
-    // Закриття списку через невеликий час після втрати фокусу
     setTimeout(() => setIsOpen(false), 100);
   }, []);
 
   const handleTextChange = (evt) => {
     const value = evt.target.value
     setText(value)
-    console.log(value);
   }
 
   const handleSubmit = (evt) => {
@@ -53,10 +52,11 @@ export const SearchGames = ({ games }) => {
     const formData = {
       game: choosenGame,
       review: text,
+      id: uuidv4()
     }
-    console.log(formData);
     setChoosenGame('')
     setText('')
+    onSubmit(formData)
   }
 
   return (
@@ -93,4 +93,4 @@ export const SearchGames = ({ games }) => {
   );
 };
 
-export default SearchGames;
+export default CommentForm;
