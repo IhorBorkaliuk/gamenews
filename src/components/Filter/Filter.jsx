@@ -25,7 +25,7 @@ const FilterDropdown = ({ genres,  onChange}) => {
   return (
     <DropdownContainer>
       <DropdownHeader onClick={toggleDropdown}>
-        {selectedOption ? selectedOption : 'Виберіть жанр'}
+        {selectedOption ? selectedOption : 'Choose genre'}
       </DropdownHeader>
       {isOpen && (
         <DropdownList>

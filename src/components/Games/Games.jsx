@@ -43,7 +43,7 @@ export const Games = ({ games, setGames }) => {
       <Row xs={1} md={4} className="g-3 mt-3 d-flex align-items-stretch">
         {displayedGames.length === 0 ? (
           <Col>
-            <NoPostsFound searchParam={queryGames} />
+            <NoPostsFound query={queryGames} />
           </Col>
         ) : (
           displayedGames.map((el, index) => (

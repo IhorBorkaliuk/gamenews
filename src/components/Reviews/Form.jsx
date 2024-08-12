@@ -46,7 +46,7 @@ export const CommentForm = ({ games, onSubmit }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (choosenGame === '' || text === '') {
-      alert('Заповніть всі поля')
+      alert('Fill up all the fields!')
       return
     }
     const formData = {
@@ -69,7 +69,7 @@ export const CommentForm = ({ games, onSubmit }) => {
               value={choosenGame}
               onFocus={() => setIsOpen(true)}
               onBlur={handleBlur}
-              placeholder="Введіть назву гри..."
+              placeholder="Enter the name of the game..."
             />
             {isOpen && filteredGames.length > 0 && (
               <DropdownList>

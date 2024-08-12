@@ -5,13 +5,18 @@ import {
 } from './StyledNoPostsFound';
 
 const NoPostsFound = ({ query }) => {
+
   return (
     <NoNewsMessageContainer>
       <NoNewsMessageText>
-        Новин за запитом '{query}' не знайдено.
+        There are no results for your request '{query}'
       </NoNewsMessageText>
     </NoNewsMessageContainer>
   );
 };
 
 export default NoPostsFound;
+
+
+
+
