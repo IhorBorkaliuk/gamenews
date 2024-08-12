@@ -10,9 +10,9 @@ import {
   InputField,
   SubmitButton,
   CancelButton,
-} from './ModalStyled';
+} from './ModalAuthStyled';
 
-export const AuthModal = ({ handleClickClose }) => {
+export const AuthModal = ({setOpen}) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,7 +22,11 @@ export const AuthModal = ({ handleClickClose }) => {
 
   const handleChangePassword = evt => {
     setPassword(evt.target.value);
-    };
+  };
+  
+        const handleClickClose = () => {
+          setOpen(false);
+        };
     
     const handleSubmit = (evt) => {
         evt.preventDefault()

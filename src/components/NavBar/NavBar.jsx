@@ -1,5 +1,7 @@
 import Container from 'react-bootstrap/Container';
-import AuthModal from 'components/Modal/Modal';
+import AuthModal from 'components/Modal/ModalAuth';
+import RegistrationModal from 'components/Modal/ModalReg';
+import { RegisterButton, LoginButton } from './NavBarStyled';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
@@ -7,15 +9,16 @@ import { useState } from 'react';
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
+  const [isOpenReg, setOpenReg] = useState(false)
 
     const handleClickOpen = () => {
       setOpen(true)
   }
   
-      const handleClickClose = () => {
-        setOpen(false);
-      };
-    console.log(isOpen);
+  const handleClickOpenReg = () => {
+        setOpenReg(true)
+  }
+
   return (
     <>
       <Navbar bg="dark" variant="dark" className="rounded">
@@ -34,10 +37,14 @@ const NavBar = () => {
               Giveaways
             </Nav.Link>
           </Nav>
+          <LoginButton onClick={handleClickOpen}>Login</LoginButton>
+          <RegisterButton onClick={handleClickOpenReg}>Sign In</RegisterButton>
         </Container>
-        <button onClick={handleClickOpen}>Login</button>
       </Navbar>
-      {isOpen && <AuthModal handleClickClose={handleClickClose}></AuthModal>}
+      {isOpen && <AuthModal setOpen={setOpen}></AuthModal>}
+      {isOpenReg && (
+        <RegistrationModal setOpenReg={setOpenReg}></RegistrationModal>
+      )}
     </>
   );
 };
