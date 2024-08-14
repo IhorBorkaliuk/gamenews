@@ -1,50 +1,75 @@
+// NavBarStyled.js
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import {
+  Navbar as BootstrapNavbar,
+  Nav as BootstrapNav,
+} from 'react-bootstrap';
 
-// Базовий стиль для кнопок
-const Button = styled.button`
-  padding: 10px 20px;
+// Стилізований контейнер для профілю користувача
+export const UserProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Вирівнює профіль користувача праворуч */
+`;
+
+// Стилізоване посилання для профілю користувача
+export const UserProfileLink = styled(Link)`
+  color: #ffffff; /* Колір тексту */
+  text-decoration: none; /* Без підкреслення */
+  font-size: 16px; /* Розмір шрифту */
+  font-weight: bold; /* Жирний шрифт */
+  margin: 0 15px; /* Зовнішні відступи */
+
+  &:hover {
+    color: #cccccc; /* Колір при наведенні */
+  }
+`;
+
+// Стилізована кнопка для входу
+export const LoginButton = styled.button`
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-size: 16px;
   font-weight: bold;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
   &:hover {
-    transform: scale(1.05);
-  }
-
-  &:active {
-    transform: scale(0.95);
+    color: #cccccc;
   }
 `;
 
-// Кнопка Вхід в темносірому
-export const LoginButton = styled(Button)`
-  background-color: #333;
-  color: white;
+// Стилізована кнопка для реєстрації
+export const RegisterButton = styled.button`
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
   &:hover {
-    background-color: #555;
-  }
-
-  &:active {
-    background-color: #222;
+    color: #cccccc;
   }
 `;
 
-// Кнопка Реєстрація в білому
-export const RegisterButton = styled(Button)`
-margin-left: 15px;
-  background-color: #fff;
-  color: #333;
-  border: 2px solid #333;
+// Стилізований Navbar, замінюючи Bootstrap Navbar
+export const Navbar = styled(BootstrapNavbar)`
+  background-color: #343a40; /* Темний фон */
+  border-radius: 0.25rem; /* Заокруглені кути */
+`;
 
-  &:hover {
-    background-color: #f0f0f0;
-  }
+export const Nav = styled(BootstrapNav)`
+  .nav-link {
+    color: #ffffff !important; /* Колір посилань */
 
-  &:active {
-    background-color: #ddd;
+    &:hover {
+      color: #cccccc !important; /* Колір при наведенні */
+    }
   }
 `;

@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import NavBar from './NavBar/NavBar';
 import LoaderExampleInlineCentered from './Loader/Loader';
-import { APIGames } from 'services/API'; // Імпортуйте ваш API-запит
+import { APIGames } from 'services/API'; 
 
 const PostsList = lazy(() => import('./PostsList/PostsList'));
 const PostPage = lazy(() => import('./PostPage/PostPage'));
@@ -14,6 +14,14 @@ const GamePage = lazy(() => import('./GamePage/GamePage'));
 
 export const App = () => {
   const [games, setGames] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(() => {
+    const checkAuth = localStorage.getItem('data')
+    if (checkAuth) {
+      setIsLoggedIn(true)
+    }
+  }, []);
+  console.log(isLoggedIn);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -29,7 +37,7 @@ export const App = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} />
       <Suspense fallback={<LoaderExampleInlineCentered />}>
         <Routes>
           <Route path="/" element={<PostsList />} />

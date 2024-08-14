@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {
   ModalOverlay,
   ModalContainer,
@@ -16,6 +16,16 @@ const RegistrationModal = ({ setOpenReg }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('data')
+    if (savedData) {
+      const { login, password, email } = JSON.parse(savedData)
+      setLogin(login)
+      setPassword(password)
+      setEmail(email)
+    }
+  }, []);
 
   const handleChangeLogin = evt => {
     setLogin(evt.target.value);
@@ -39,10 +49,10 @@ const RegistrationModal = ({ setOpenReg }) => {
       password: password,
       email: email,
     };
+    localStorage.setItem('data', JSON.stringify(dataForm))
     handleClickClose();
-    console.log(dataForm);
   };
-
+  console.log(login, password, email);
   return (
     <ModalOverlay>
       <ModalContainer>

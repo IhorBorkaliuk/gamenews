@@ -8,7 +8,7 @@ import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
 import SearchBar from 'components/SearchBar/SearchBar';
 import FilterDropdown from 'components/Filter/Filter';
 
-export const Games = ({ games, setGames }) => {
+export const Games = ({ games }) => {
   const [searchParam, setSearchParam] = useSearchParams();
   const [loadedGames, setLoadedGames] = useState(20);
   const [selectedGenre, setSelectedGenre] = useState(null);
