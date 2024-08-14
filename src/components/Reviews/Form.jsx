@@ -14,7 +14,10 @@ export const CommentForm = ({ games, onSubmit }) => {
   const [choosenGame, setChoosenGame] = useState('');
   const [filteredGames, setFilteredGames] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(() => {
+        const savedText = localStorage.getItem('review');
+    return savedText ? JSON.parse(savedText) : ''
+  });
 
   const handleSearch = evt => {
     const value = evt.target.value;
@@ -41,6 +44,7 @@ export const CommentForm = ({ games, onSubmit }) => {
   const handleTextChange = evt => {
     const value = evt.target.value;
     setText(value);
+    localStorage.setItem('review', JSON.stringify(value))
   };
 
   const handleSubmit = evt => {
@@ -57,6 +61,7 @@ export const CommentForm = ({ games, onSubmit }) => {
     setChoosenGame('');
     setText('');
     onSubmit(formData);
+    localStorage.removeItem('review')
   };
 
   return (

@@ -4,32 +4,35 @@ import { NavLink as RouterNavLink } from 'react-router-dom';
 
 // Стиль для кнопки входу
 export const LoginButton = styled.button`
-  background-color: #007bff;
-  border: none;
-  color: white;
+  background-color: #333; /* Темно-сірий фон */
+  border: 1px solid #ccc; /* Світло-сірий бордер */
+  color: #fff; /* Білий текст */
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
   margin-left: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #555; /* Світліший сірий фон */
+    border-color: #aaa; /* Світліший бордер */
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3); /* Тінь при фокусі для контрасту */
   }
 `;
 
 // Стиль для кнопки реєстрації
 export const RegisterButton = styled(LoginButton)`
-  background-color: #28a745;
+  background-color: #666; /* Середньо-сірий фон */
+  border: 1px solid #aaa; /* Світліший сірий бордер */
 
   &:hover {
-    background-color: #218838;
+    background-color: #888; /* Світліший сірий фон */
+    border-color: #888; /* Той же колір бордера при ховері */
   }
 `;
 

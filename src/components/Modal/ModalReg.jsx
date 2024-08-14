@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ModalOverlay,
   ModalContainer,
@@ -18,12 +17,12 @@ const RegistrationModal = ({ setOpenReg }) => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const savedData = localStorage.getItem('data')
+    const savedData = localStorage.getItem('data');
     if (savedData) {
-      const { login, password, email } = JSON.parse(savedData)
-      setLogin(login)
-      setPassword(password)
-      setEmail(email)
+      const { login, password, email } = JSON.parse(savedData);
+      setLogin(login);
+      setPassword(password);
+      setEmail(email);
     }
   }, []);
 
@@ -34,6 +33,7 @@ const RegistrationModal = ({ setOpenReg }) => {
   const handleChangePassword = evt => {
     setPassword(evt.target.value);
   };
+
   const handleChangeEmail = evt => {
     setEmail(evt.target.value);
   };
@@ -44,15 +44,20 @@ const RegistrationModal = ({ setOpenReg }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
+        if (!login || !password || !email) {
+          alert('Please fill in all fields.');
+          return;
+        }
     const dataForm = {
-      login: login,
-      password: password,
-      email: email,
+      login,
+      password,
+      email,
     };
-    localStorage.setItem('data', JSON.stringify(dataForm))
+    localStorage.setItem('data', JSON.stringify(dataForm));
     handleClickClose();
+    window.location.reload();
   };
-  console.log(login, password, email);
+
   return (
     <ModalOverlay>
       <ModalContainer>

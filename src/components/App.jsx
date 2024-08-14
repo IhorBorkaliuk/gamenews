@@ -21,7 +21,6 @@ export const App = () => {
       setIsLoggedIn(true)
     }
   }, []);
-  console.log(isLoggedIn);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -37,7 +36,7 @@ export const App = () => {
 
   return (
     <div>
-      <NavBar isLoggedIn={isLoggedIn} />
+      <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Suspense fallback={<LoaderExampleInlineCentered />}>
         <Routes>
           <Route path="/" element={<PostsList />} />

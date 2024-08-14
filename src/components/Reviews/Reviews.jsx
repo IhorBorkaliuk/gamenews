@@ -19,7 +19,6 @@ export const Reviews = ({ games }) => {
 
   const handleSubmit = data => {
     setReviews(prevState => [...prevState, data]);
-    console.log(reviews);
   };
 
   const handleDelete = (id) => {
@@ -29,7 +28,6 @@ export const Reviews = ({ games }) => {
   useEffect(() => {
     localStorage.setItem('comment', JSON.stringify(reviews));
   }, [reviews]);
-  console.log(reviews);
 
   return (
     <ReviewsContainer>

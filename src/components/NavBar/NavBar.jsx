@@ -1,5 +1,5 @@
 import Container from 'react-bootstrap/Container';
-import AuthModal from 'components/Modal/ModalAuth';
+import AuthModal from 'components/Modal/AuthModal';
 import RegistrationModal from 'components/Modal/ModalReg';
 import {
   RegisterButton,
@@ -10,11 +10,22 @@ import {
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const NavBar = ({ isLoggedIn }) => {
+const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isOpen, setOpen] = useState(false);
   const [isOpenReg, setOpenReg] = useState(false);
+  const [login, setLogin] = useState('');
+
+  useEffect(() => {
+    const getName = localStorage.getItem('data');
+    if (getName) {
+      const { login } = JSON.parse(getName);
+      setLogin(login || '');
+    } else {
+      setLogin('');
+    }
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,9 +34,6 @@ const NavBar = ({ isLoggedIn }) => {
   const handleClickOpenReg = () => {
     setOpenReg(true);
   };
-  const getName = localStorage.getItem('data')
-  const {login} = JSON.parse(getName)
-  console.log(login);
 
   return (
     <>
@@ -45,7 +53,7 @@ const NavBar = ({ isLoggedIn }) => {
               Giveaways
             </Nav.Link>
           </Nav>
-          {isLoggedIn ? (
+          {isLoggedIn && login ? (
             <UserProfileContainer>
               <UserProfileLink>{login}</UserProfileLink>
             </UserProfileContainer>
@@ -58,11 +66,10 @@ const NavBar = ({ isLoggedIn }) => {
             </>
           )}
         </Container>
+        <LoginButton onClick={handleClickOpen}>Login</LoginButton>
       </Navbar>
-      {isOpen && <AuthModal setOpen={setOpen}></AuthModal>}
-      {isOpenReg && (
-        <RegistrationModal setOpenReg={setOpenReg}></RegistrationModal>
-      )}
+      {isOpen && <AuthModal setOpen={setOpen} setIsLoggedIn={setIsLoggedIn} />}
+      {isOpenReg && <RegistrationModal setOpenReg={setOpenReg} />}
     </>
   );
 };
