@@ -14,7 +14,7 @@ export const CommentForm = ({ games, onSubmit }) => {
   const [choosenGame, setChoosenGame] = useState('');
   const [filteredGames, setFilteredGames] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [text, setText] = useState('')
+  const [text, setText] = useState('');
 
   const handleSearch = evt => {
     const value = evt.target.value;
@@ -38,58 +38,56 @@ export const CommentForm = ({ games, onSubmit }) => {
     setTimeout(() => setIsOpen(false), 100);
   }, []);
 
-  const handleTextChange = (evt) => {
-    const value = evt.target.value
-    setText(value)
-  }
+  const handleTextChange = evt => {
+    const value = evt.target.value;
+    setText(value);
+  };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = evt => {
     evt.preventDefault();
     if (choosenGame === '' || text === '') {
-      alert('Fill up all the fields!')
-      return
+      alert('Fill up all the fields!');
+      return;
     }
     const formData = {
       game: choosenGame,
       review: text,
-      id: uuidv4()
-    }
-    setChoosenGame('')
-    setText('')
-    onSubmit(formData)
-  }
+      id: uuidv4(),
+    };
+    setChoosenGame('');
+    setText('');
+    onSubmit(formData);
+  };
 
   return (
-    <div>
-      <FormContainer>
-        <form onSubmit={handleSubmit}>
-          <SearchDropdownContainer>
-            <InputField
-              onChange={handleSearch}
-              value={choosenGame}
-              onFocus={() => setIsOpen(true)}
-              onBlur={handleBlur}
-              placeholder="Enter the name of the game..."
-            />
-            {isOpen && filteredGames.length > 0 && (
-              <DropdownList>
-                {filteredGames.map((game, index) => (
-                  <DropdownItem
-                    key={index}
-                    onMouseDown={() => handleClick(game)}
-                    className={game.title === choosenGame ? 'selected' : ''}
-                  >
-                    {game.title} {/* Відображаємо назву гри */}
-                  </DropdownItem>
-                ))}
-              </DropdownList>
-            )}
-          </SearchDropdownContainer>
-          <TextArea onChange={handleTextChange} value={text}/>
-          <SubmitButton type="submit">Відправити</SubmitButton>
-        </form>
-      </FormContainer>
-    </div>
+    <FormContainer>
+      <form onSubmit={handleSubmit}>
+        <SearchDropdownContainer>
+          <InputField
+            onChange={handleSearch}
+            value={choosenGame}
+            onFocus={() => setIsOpen(true)}
+            onBlur={handleBlur}
+            placeholder="Enter the name of the game..."
+          />
+          {isOpen && filteredGames.length > 0 && (
+            <DropdownList>
+              {filteredGames.map((game, index) => (
+                <DropdownItem
+                  key={index}
+                  onMouseDown={() => handleClick(game)}
+                  className={game.title === choosenGame ? 'selected' : ''}
+                >
+                  {game.title} {/* Відображаємо назву гри */}
+                </DropdownItem>
+              ))}
+            </DropdownList>
+          )}
+        </SearchDropdownContainer>
+        <TextArea onChange={handleTextChange} value={text} />
+        <SubmitButton type="submit">Відправити</SubmitButton>
+      </form>
+    </FormContainer>
   );
 };
 

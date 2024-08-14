@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { StyledNavLink } from 'components/PostCard/PostCardStyled';
+import { StyledCard, StyledCardImg, StyledNavLink } from './GameCardStyled';
 
 export const GameCard = ({ el }) => {
   return (
-        <Card className="h-100" >
-      <Card.Img variant="top" src={el.thumbnail} alt={el.short_description} />
+    <StyledCard className="h-100">
+      <StyledCardImg
+        variant="top"
+        src={el.thumbnail}
+        alt={el.short_description}
+      />
       <StyledNavLink
         to={`/games/${el.id}`}
         state={el}
@@ -17,6 +21,6 @@ export const GameCard = ({ el }) => {
           <Card.Text>{el.short_description}</Card.Text>
         </Card.Body>
       </StyledNavLink>
-    </Card>
+    </StyledCard>
   );
-}
+};

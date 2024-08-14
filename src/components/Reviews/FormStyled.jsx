@@ -1,88 +1,100 @@
+// FormStyled.js
 import styled from 'styled-components';
+import { Button } from 'react-bootstrap';
 
-export const SearchDropdownContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 400px;
+// Контейнер для всієї форми
+export const FormContainer = styled.div`
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
 `;
 
+// Поле вводу для пошуку гри
+export const InputField = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #adb5bd; /* Світло-сірий для фокусу */
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.25); /* Світло-сірий тінь */
+  }
+`;
+
+// Контейнер для випадаючого списку
+export const SearchDropdownContainer = styled.div`
+  position: relative;
+`;
+
+// Випадаючий список
 export const DropdownList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-height: 200px;
   overflow-y: auto;
-  padding: 0;
+  z-index: 1000;
   margin: 0;
-  list-style-type: none;
+  padding: 0;
+  list-style: none;
 `;
 
+// Елемент випадаючого списку
 export const DropdownItem = styled.li`
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: #f8f9fa; /* Світло-сірий для ховера */
   }
 
   &.selected {
-    background-color: #333;
-    color: white;
+    background-color: #e9ecef; /* Сірий для вибраного елемента */
   }
 `;
 
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  background-color: #c8c7c7;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-  margin-top: 35px;
-`;
-
+// Поле вводу для тексту коментаря
 export const TextArea = styled.textarea`
   width: 100%;
+  height: 150px;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
   font-size: 16px;
   resize: vertical;
-  min-height: 100px;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #adb5bd; /* Світло-сірий для фокусу */
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.25); /* Світло-сірий тінь */
+  }
 `;
 
-export const InputField = styled.input`
+// Кнопка відправки
+export const SubmitButton = styled(Button)`
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 16px;
-`;
-
-export const SubmitButton = styled.button`
-  padding: 10px 20px;
-  margin: 10px 0;
-  background-color:#555;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+  border-radius: 4px;
+  background-color: #6c757d; /* Темно-сірий фон кнопки */
+  border-color: #6c757d; /* Темно-сірий бордер кнопки */
 
   &:hover {
-    background-color: #333;
+    background-color: #5a6268; /* Трохи темніший сірий для ховера */
+    border-color: #545b62; /* Ще темніший сірий для бордера при ховері */
   }
 `;

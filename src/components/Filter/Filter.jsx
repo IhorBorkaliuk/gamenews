@@ -28,7 +28,7 @@ const FilterDropdown = ({ genres,  onChange}) => {
         {selectedOption ? selectedOption : 'Choose genre'}
       </DropdownHeader>
       {isOpen && (
-        <DropdownList>
+        <DropdownList >
           {genres.map(option => (
             <DropdownItem
               key={option}

@@ -1,45 +1,54 @@
+// FilterStyled.js
 import styled from 'styled-components';
 
 export const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
+  width: 200px; /* Ви можете налаштувати ширину за потреби */
+  user-select: none; /* Запобігає виділенню тексту при кліках */
 `;
 
 export const DropdownHeader = styled.div`
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #333;
+  color: #fff;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+
+  &:hover {
+    background-color: #555;
+  }
 `;
 
 export const DropdownList = styled.ul`
   position: absolute;
-  top: calc(100% + 5px);
+  top: 100%;
   left: 0;
-  width: 150px;
-  max-height: 200px; 
-  overflow-y: auto; 
-  overflow-x: hidden;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   margin: 0;
   padding: 0;
   list-style: none;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+  max-height: 200px; /* Встановлює максимальну висоту списку */
+  overflow-y: auto; /* Додає вертикальну прокрутку при необхідності */
+  z-index: 1000; /* Забезпечує, щоб список був поверх інших елементів */
 `;
 
 export const DropdownItem = styled.li`
   padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  white-space: nowrap;
+  font-size: 16px;
 
   &:hover {
     background-color: #f0f0f0;
+  }
+
+  &:active {
+    background-color: #e0e0e0;
   }
 `;

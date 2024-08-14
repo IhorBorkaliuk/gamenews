@@ -1,46 +1,45 @@
+// PostPageStyled.js
 import styled from 'styled-components';
 
+// Обгортка для всієї сторінки
 export const Wrapper = styled.div`
-  max-width: 1200px; /* Максимальна ширина контейнера */
-  margin: 0 auto; /* Центрування контейнера на сторінці */
-  padding: 20px; /* Внутрішній відступ для контенту */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
+// Заголовок статті
+export const Title = styled.h1`
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+`;
+
+// Зображення статті
 export const Image = styled.img`
   width: 100%;
-  max-height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+  border-radius: 8px;
   margin-bottom: 20px;
-  
 `;
 
-export const Title = styled.h2`
-  font-size: 36px;
-  color: #fff;
-  background: linear-gradient(45deg, #333, #666);
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-`;
-
+// Параграф тексту
 export const Paragraph = styled.p`
-  font-size: 16px;
-  color: #666;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
   margin-bottom: 20px;
 `;
 
+// Посилання на джерело статті
 export const Link = styled.a`
-  text-decoration: none;
   color: #007bff;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  text-decoration: none;
+  font-weight: bold;
 
   &:hover {
     text-decoration: underline;

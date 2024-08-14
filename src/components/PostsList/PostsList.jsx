@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { API } from 'services/API';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { Container, LoadMoreButton, PostRow, PostCol } from './PostsListStyled';
 
 import SearchBar from 'components/SearchBar/SearchBar';
 import PostCard from 'components/PostCard/PostCard';
 import NoPostsFound from 'components/NoPostsFound/NoPostsFound';
-import { LoadMore } from 'components/Games/GamesStyled';
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
@@ -45,21 +43,25 @@ const PostsList = () => {
   const showLoadMore = startedPosts < postsToDisplay.length;
 
   return (
-    <div>
+    <Container>
       <SearchBar setSearchParam={setSearchParam} query={query} />
-      <Row xs={1} md={3} className="g-3 mt-3 d-flex align-items-stretch">
+      <PostRow xs={1} md={3} className="g-3">
         {query && filteredPosts.length === 0 ? (
+          <PostCol>
             <NoPostsFound query={query} />
+          </PostCol>
         ) : (
           postsToDisplay.slice(0, startedPosts).map((el, index) => (
-            <Col key={index}>
-              <PostCard el={el}></PostCard>
-            </Col>
+            <PostCol key={index}>
+              <PostCard el={el} />
+            </PostCol>
           ))
         )}
-      </Row>
-      {showLoadMore && <LoadMore onClick={loadMorePosts}>Load more</LoadMore>}
-    </div>
+      </PostRow>
+      {showLoadMore && (
+        <LoadMoreButton onClick={loadMorePosts}>Load more</LoadMoreButton>
+      )}
+    </Container>
   );
 };
 

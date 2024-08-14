@@ -14,12 +14,16 @@ const PostPage = () => {
   return (
     <Wrapper>
       <Title>{state.title}</Title>
-      <Image src={state.main_image} alt={state.short_description}></Image>
-      <Paragraph>{cleanText}</Paragraph>
+      <Image src={state.main_image} alt={state.short_description} />
+      <Paragraph dangerouslySetInnerHTML={{ __html: cleanText }} />
 
       <Paragraph>
         Source:{' '}
-        <Link href={state.article_url} target="_blank">
+        <Link
+          href={state.article_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {state.article_url}
         </Link>
       </Paragraph>
