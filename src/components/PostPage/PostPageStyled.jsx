@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 // Обгортка для всієї сторінки
 export const Wrapper = styled.div`
+position: relative;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  padding-top: 30px;
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -13,6 +15,7 @@ export const Wrapper = styled.div`
 
 // Заголовок статті
 export const Title = styled.h1`
+text-align: center;
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 20px;

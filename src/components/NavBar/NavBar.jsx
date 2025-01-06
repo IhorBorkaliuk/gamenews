@@ -35,6 +35,11 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
     setOpenReg(true);
   };
 
+  const handleClickLogOut = () => {
+    // localStorage.removeItem('data')
+    setIsLoggedIn(false)
+  }
+
   return (
     <>
       <Navbar bg="dark" variant="dark" className="rounded">
@@ -55,7 +60,7 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
           </Nav>
           {isLoggedIn && login ? (
             <UserProfileContainer>
-              <UserProfileLink>{login}</UserProfileLink>
+              <UserProfileLink>Вітаємо, {login}!</UserProfileLink>
             </UserProfileContainer>
           ) : (
             <>
@@ -66,7 +71,9 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
             </>
           )}
         </Container>
-        <LoginButton onClick={handleClickOpen}>Login</LoginButton>
+        {isLoggedIn && (
+          <LoginButton onClick={handleClickLogOut}>Logout</LoginButton>
+        )}
       </Navbar>
       {isOpen && <AuthModal setOpen={setOpen} setIsLoggedIn={setIsLoggedIn} />}
       {isOpenReg && <RegistrationModal setOpenReg={setOpenReg} />}

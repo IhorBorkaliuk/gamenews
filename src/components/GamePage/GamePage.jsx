@@ -1,25 +1,56 @@
-import {Wrapper, Title } from 'components/PostPage/PostPageStyled'
-import React from 'react'
-import { ImageGame, DescriptionGame, ParagraphGame } from './GamePageStyed';
+
+import React, { useState } from 'react'
+import {
+  ImageGame,
+  DescriptionGame,
+  ParagraphGame,
+  AddToFavoritesButton,AlreadyInFavoritesButton,
+  WrapperGamePage,
+  Title,
+} from './GamePageStyed';
 import { useLocation } from 'react-router'
     
 
-const GamePage = () => {
-    const location = useLocation()
-    const { state } = location
-    console.log(state);
-    const {
-      title,
-      thumbnail,
-      short_description,
-      genre,
-      platform,
-      developer,
-      release_date,
-      game_url,
-    } = state;
+const GamePage = ({ isLoggedIn }) => {
+  console.log(isLoggedIn);
+  const checkIsFavourite = localStorage.getItem('favourite')
+  const [isFavourite, setFavourite] = useState(checkIsFavourite ? true : false);
+  const location = useLocation();
+  const { state } = location;
+
+  const {
+    title,
+    thumbnail,
+    short_description,
+    genre,
+    platform,
+    developer,
+    release_date,
+    game_url,
+  } = state;
+
+  const addToFavourite = () => {
+    localStorage.setItem('favourite', JSON.stringify(title));
+    setFavourite(true);
+  };
+  const deleteFromFavourite = () => {
+    localStorage.removeItem('favourite')
+    setFavourite(false)
+  }
+  console.log(isFavourite);
   return (
-    <Wrapper>
+    <WrapperGamePage>
+      {isLoggedIn && (
+        isFavourite ? (
+          <AlreadyInFavoritesButton onClick={deleteFromFavourite}>
+            Гра в обраному
+          </AlreadyInFavoritesButton>
+        ) : (
+          <AddToFavoritesButton onClick={addToFavourite}>
+            Додати до улюблених
+          </AddToFavoritesButton>
+        )
+      )} 
       <Title>{title}</Title>
       <ImageGame src={thumbnail}></ImageGame>
       <DescriptionGame>{short_description}</DescriptionGame>
@@ -33,8 +64,8 @@ const GamePage = () => {
           {game_url}
         </a>
       </ParagraphGame>
-    </Wrapper>
+    </WrapperGamePage>
   );
-}
+};
 
 export default GamePage;

@@ -15,12 +15,12 @@ const GamePage = lazy(() => import('./GamePage/GamePage'));
 export const App = () => {
   const [games, setGames] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  useEffect(() => {
-    const checkAuth = localStorage.getItem('data')
-    if (checkAuth) {
-      setIsLoggedIn(true)
-    }
-  }, []);
+  // useEffect(() => {
+  //   const checkAuth = localStorage.getItem('data')
+  //   if (checkAuth) {
+  //     setIsLoggedIn(true)
+  //   }
+  // }, []);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -45,7 +45,7 @@ export const App = () => {
             path="/games"
             element={<Games games={games} setGames={setGames} />}
           />
-          <Route path="/games/:id" element={<GamePage />} />
+          <Route path="/games/:id" element={<GamePage isLoggedIn={isLoggedIn}/>} />
           <Route path="/reviews" element={<Reviews games={games} />} />
           <Route path="/giveaways" element={<Giveaways />} />
           <Route path="*" element={<NotFound />} />

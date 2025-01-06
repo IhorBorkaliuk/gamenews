@@ -1,20 +1,18 @@
-// GamePageStyled.js
 import styled from 'styled-components';
 
-// Основний контейнер для сторінки гри
-export const Wrapper = styled.div`
+// Обгортка для всієї сторінки
+export const WrapperGamePage = styled.div`
+  position: relative;
   max-width: 800px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
-  background: #f9f9f9;
+  padding-top: 30px;
+  background-color: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-// Заголовок гри
+// Заголовок
 export const Title = styled.h1`
   font-size: 2.5rem;
   color: #333;
@@ -24,36 +22,93 @@ export const Title = styled.h1`
 
 // Зображення гри
 export const ImageGame = styled.img`
-  max-width: 100%;
+display: block;
+margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
 // Опис гри
 export const DescriptionGame = styled.p`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #555;
-  margin-bottom: 20px;
-  text-align: center;
   line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: justify;
 `;
 
-// Параграфи для платформ, жанру тощо
+// Абзац для різних даних гри
 export const ParagraphGame = styled.p`
   font-size: 1rem;
-  color: #666;
-  margin: 5px 0;
-  text-align: center;
+  color: #444;
+  margin: 10px 0;
 
   & a {
     color: #007bff;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
 
     &:hover {
       text-decoration: underline;
     }
   }
+`
+export const AddToFavoritesButton = styled.button`
+  background-color: #ff7f50; /* Оранжевий колір для кнопки */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #ff6347; /* Темніший оранжевий при наведенні */
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  /* Для кнопки, коли вона активна (не додана до вибраного) */
+  &.active {
+    background-color: #ff6347;
+  }
+
+  &.active:hover {
+    background-color: #ff4500; /* Наведення для вже доданої кнопки */
+  }
 `;
+export const AlreadyInFavoritesButton = styled.button`
+  background-color: #4caf50; /* Зелений колір для кнопки, якщо вже в обраному */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #45a049; /* Темніший зелений при наведенні */
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  /* Додаємо стилі для стану, коли кнопка "Вже в обраному" */
+  &.disabled {
+    cursor: not-allowed; /* Забороняє натискання */
+    background-color: #388e3c; /* Темніший зелений */
+  }
+`;;
