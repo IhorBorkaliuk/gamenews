@@ -19,6 +19,7 @@ export const Games = ({ games }) => {
 
   const handleFilterChange = option => {
     setSelectedGenre(option);
+    setLoadedGames(20)
   };
 
   const queryGames = searchParam.get('search') ?? '';
@@ -30,11 +31,17 @@ export const Games = ({ games }) => {
     ? filteredGames
     : sortedByGenre.length === 0
     ? games.slice(0, loadedGames)
-    : sortedByGenre;
+    : sortedByGenre.slice(0, loadedGames);
+  console.log(displayedGames);
 
   const genres = games
     .map(game => game.genre)
     .filter((game, index, games) => games.indexOf(game) === index);
+
+  const shouldRenderLoadMore =
+    displayedGames.length % 20 === 0 &&
+    displayedGames.length <
+      (selectedGenre ? sortedByGenre.length : games.length);
 
   return (
     <div>
@@ -53,9 +60,10 @@ export const Games = ({ games }) => {
           ))
         )}
       </Row>
-      <LoadMore onClick={loadmore}>Load more</LoadMore>
+      {shouldRenderLoadMore && (
+        <LoadMore onClick={loadmore}>Load more</LoadMore>
+      )}
     </div>
   );
 };
-
 export default Games;
