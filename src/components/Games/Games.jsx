@@ -34,9 +34,7 @@ export const Games = ({ games }) => {
     : sortedByGenre.slice(0, loadedGames);
   console.log(displayedGames);
 
-  const genres = games
-    .map(game => game.genre)
-    .filter((game, index, games) => games.indexOf(game) === index);
+
 
   const shouldRenderLoadMore =
     displayedGames.length % 20 === 0 &&
@@ -46,7 +44,7 @@ export const Games = ({ games }) => {
   return (
     <div>
       <SearchBar queryGames={queryGames} setSearchParam={setSearchParam} />
-      <FilterDropdown genres={genres} onChange={handleFilterChange} />
+      <FilterDropdown games={games} onChange={handleFilterChange} />
       <Row xs={1} md={4} className="g-3 mt-3 d-flex align-items-stretch">
         {displayedGames.length === 0 ? (
           <Col>

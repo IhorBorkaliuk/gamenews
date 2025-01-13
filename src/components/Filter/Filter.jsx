@@ -6,9 +6,13 @@ import {
   DropdownList,
 } from './FilterStyled';
 
-const FilterDropdown = ({ genres,  onChange}) => {
+const FilterDropdown = ({ games,  onChange}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+
+    const genres = games
+      .map(game => game.genre)
+      .filter((game, index, games) => games.indexOf(game) === index);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
