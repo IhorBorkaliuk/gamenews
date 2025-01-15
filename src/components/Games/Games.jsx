@@ -32,7 +32,6 @@ export const Games = ({ games }) => {
     : sortedByGenre.length === 0
     ? games.slice(0, loadedGames)
     : sortedByGenre.slice(0, loadedGames);
-  console.log(displayedGames);
 
   const shouldRenderLoadMore =
     displayedGames.length % 20 === 0 &&

@@ -1,23 +1,19 @@
-
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Reviews from 'components/Reviews/Reviews';
 import {
   ImageGame,
   DescriptionGame,
   ParagraphGame,
-  AddToFavoritesButton,AlreadyInFavoritesButton,
+  AddToFavoritesButton,
+  AlreadyInFavoritesButton,
   WrapperGamePage,
   Title,
 } from './GamePageStyed';
-import { useLocation } from 'react-router'
-    
+import { useLocation } from 'react-router';
 
-const GamePage = ({ isLoggedIn }) => {
-  console.log(isLoggedIn);
-  const checkIsFavourite = localStorage.getItem('favourite')
-  const [isFavourite, setFavourite] = useState(checkIsFavourite ? true : false);
+const GamePage = ({ isLoggedIn, games }) => {
   const location = useLocation();
   const { state } = location;
-
   const {
     title,
     thumbnail,
@@ -28,20 +24,28 @@ const GamePage = ({ isLoggedIn }) => {
     release_date,
     game_url,
   } = state;
+  const [favourites, setFavourite] = useState(
+    JSON.parse(localStorage.getItem('favourite') || [])
+  );
 
   const addToFavourite = () => {
-    localStorage.setItem('favourite', JSON.stringify(title));
-    setFavourite(true);
+    const updatedFavourites = [...favourites, title]; 
+    setFavourite(updatedFavourites); 
+    localStorage.setItem('favourite', JSON.stringify(updatedFavourites)); 
   };
+
   const deleteFromFavourite = () => {
-    localStorage.removeItem('favourite')
-    setFavourite(false)
-  }
-  console.log(isFavourite);
+    const updatedFavourites = favourites.filter(item => item !== title); 
+    setFavourite(updatedFavourites); 
+    localStorage.setItem('favourite', JSON.stringify(updatedFavourites)); 
+  };
+
+  const isInFavourite = favourites.includes(title);
+
   return (
     <WrapperGamePage>
-      {isLoggedIn && (
-        isFavourite ? (
+      {isLoggedIn &&
+        (isInFavourite ? (
           <AlreadyInFavoritesButton onClick={deleteFromFavourite}>
             Гра в обраному
           </AlreadyInFavoritesButton>
@@ -49,10 +53,9 @@ const GamePage = ({ isLoggedIn }) => {
           <AddToFavoritesButton onClick={addToFavourite}>
             Додати до улюблених
           </AddToFavoritesButton>
-        )
-      )} 
+        ))}
       <Title>{title}</Title>
-      <ImageGame src={thumbnail}></ImageGame>
+      <ImageGame src={thumbnail} />
       <DescriptionGame>{short_description}</DescriptionGame>
       <ParagraphGame>Platform: {platform}</ParagraphGame>
       <ParagraphGame>Genre: {genre}</ParagraphGame>
@@ -64,6 +67,7 @@ const GamePage = ({ isLoggedIn }) => {
           {game_url}
         </a>
       </ParagraphGame>
+      {isLoggedIn && <Reviews games={games} />}
     </WrapperGamePage>
   );
 };

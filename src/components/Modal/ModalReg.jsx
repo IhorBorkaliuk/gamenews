@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import {
   ModalOverlay,
   ModalContainer,
@@ -15,16 +15,6 @@ const RegistrationModal = ({ setOpenReg }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-
-  useEffect(() => {
-    const savedData = localStorage.getItem('data');
-    if (savedData) {
-      const { login, password, email } = JSON.parse(savedData);
-      setLogin(login);
-      setPassword(password);
-      setEmail(email);
-    }
-  }, []);
 
   const handleChangeLogin = evt => {
     setLogin(evt.target.value);

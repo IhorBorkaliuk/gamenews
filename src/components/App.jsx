@@ -7,14 +7,13 @@ import { APIGames } from 'services/API';
 const PostsList = lazy(() => import('./PostsList/PostsList'));
 const PostPage = lazy(() => import('./PostPage/PostPage'));
 const NotFound = lazy(() => import('./NotFound/NotFound'));
-const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Games = lazy(() => import('./Games/Games'));
 const Giveaways = lazy(() => import('./Giveaways/Giveaways'));
 const GamePage = lazy(() => import('./GamePage/GamePage'));
 
 export const App = () => {
   const [games, setGames] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('data') || false)
 
   useEffect(() => {
     const loadGames = async () => {
@@ -39,8 +38,7 @@ export const App = () => {
             path="/games"
             element={<Games games={games} setGames={setGames} />}
           />
-          <Route path="/games/:id" element={<GamePage isLoggedIn={isLoggedIn}/>} />
-          <Route path="/reviews" element={<Reviews games={games} />} />
+          <Route path="/games/:id" element={<GamePage isLoggedIn={isLoggedIn} games={games} />} />
           <Route path="/giveaways" element={<Giveaways />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

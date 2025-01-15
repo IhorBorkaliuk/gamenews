@@ -36,7 +36,7 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
   };
 
   const handleClickLogOut = () => {
-    // localStorage.removeItem('data')
+    setLogin('')
     setIsLoggedIn(false)
   }
 
@@ -50,9 +50,6 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/games">
               Catalog
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/reviews">
-              Reviews
             </Nav.Link>
             <Nav.Link as={NavLink} to="/giveaways">
               Giveaways
