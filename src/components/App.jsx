@@ -15,12 +15,6 @@ const GamePage = lazy(() => import('./GamePage/GamePage'));
 export const App = () => {
   const [games, setGames] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  // useEffect(() => {
-  //   const checkAuth = localStorage.getItem('data')
-  //   if (checkAuth) {
-  //     setIsLoggedIn(true)
-  //   }
-  // }, []);
 
   useEffect(() => {
     const loadGames = async () => {
