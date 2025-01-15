@@ -12,14 +12,16 @@ export const Games = ({ games }) => {
   const [searchParam, setSearchParam] = useSearchParams();
   const [loadedGames, setLoadedGames] = useState(20);
   const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
 
   const loadmore = () => {
     setLoadedGames(prevState => prevState + 20);
   };
 
-  const handleFilterChange = option => {
-    setSelectedGenre(option);
-    setLoadedGames(20)
+  const handleFilterChange = ({ genre, platform }) => {
+    setSelectedGenre(genre);
+    setSelectedPlatform(platform); // Оновлення платформи
+    setLoadedGames(20);
   };
 
   const queryGames = searchParam.get('search') ?? '';
@@ -27,12 +29,13 @@ export const Games = ({ games }) => {
     el.title.toLowerCase().includes(queryGames.toLowerCase())
   );
   const sortedByGenre = games.filter(el => el.genre === selectedGenre);
+  const sortedByPlatform = games.filter(el => el.platform === selectedPlatform)
+  console.log(sortedByPlatform);
   const displayedGames = queryGames
     ? filteredGames
     : sortedByGenre.length === 0
     ? games.slice(0, loadedGames)
     : sortedByGenre.slice(0, loadedGames);
-  console.log(displayedGames);
 
 
 
