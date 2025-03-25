@@ -8,11 +8,10 @@ import {
 
 const FilterDropdown = ({ games, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('');
 
-  const genres = games
-    .map(game => game.genre)
-    .filter((game, index, games) => games.indexOf(game) === index);
+  const genres = [...new Set(games
+    .map(game => game.genre))]
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -27,7 +26,7 @@ const FilterDropdown = ({ games, onChange }) => {
   return (
     <DropdownContainer>
       <DropdownHeader onClick={toggleDropdown}>
-        {selectedOption ? selectedOption : 'Choose genre'}
+        {selectedOption || 'Choose genre'}
       </DropdownHeader>
       {isOpen && (
         <DropdownList>

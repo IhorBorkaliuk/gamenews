@@ -24,8 +24,9 @@ const GamePage = ({ isLoggedIn, games }) => {
     release_date,
     game_url,
   } = state;
-  const [favourites, setFavourite] = useState(
-    JSON.parse(localStorage.getItem('favourite') || [])
+  const [favourites, setFavourite] = useState(() => {
+  return  JSON.parse(localStorage.getItem('favourite')) ?? []
+  }
   );
 
   const addToFavourite = () => {
