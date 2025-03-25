@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/gamenews/static/css/main.3515ca5d.css",
-    "main.js": "/gamenews/static/js/main.21480847.js",
+    "main.js": "/gamenews/static/js/main.e25698dd.js",
     "static/js/390.3bd794df.chunk.js": "/gamenews/static/js/390.3bd794df.chunk.js",
     "static/js/697.e67bf9a7.chunk.js": "/gamenews/static/js/697.e67bf9a7.chunk.js",
     "static/js/216.79a19c1e.chunk.js": "/gamenews/static/js/216.79a19c1e.chunk.js",
-    "static/js/414.620b15ca.chunk.js": "/gamenews/static/js/414.620b15ca.chunk.js",
+    "static/js/414.947615c6.chunk.js": "/gamenews/static/js/414.947615c6.chunk.js",
     "static/js/641.5d758c0f.chunk.js": "/gamenews/static/js/641.5d758c0f.chunk.js",
-    "static/js/360.61724911.chunk.js": "/gamenews/static/js/360.61724911.chunk.js",
+    "static/js/360.684a9939.chunk.js": "/gamenews/static/js/360.684a9939.chunk.js",
     "static/js/703.b4cd0688.chunk.js": "/gamenews/static/js/703.b4cd0688.chunk.js",
     "index.html": "/gamenews/index.html",
     "main.3515ca5d.css.map": "/gamenews/static/css/main.3515ca5d.css.map",
-    "main.21480847.js.map": "/gamenews/static/js/main.21480847.js.map",
+    "main.e25698dd.js.map": "/gamenews/static/js/main.e25698dd.js.map",
     "390.3bd794df.chunk.js.map": "/gamenews/static/js/390.3bd794df.chunk.js.map",
     "697.e67bf9a7.chunk.js.map": "/gamenews/static/js/697.e67bf9a7.chunk.js.map",
     "216.79a19c1e.chunk.js.map": "/gamenews/static/js/216.79a19c1e.chunk.js.map",
-    "414.620b15ca.chunk.js.map": "/gamenews/static/js/414.620b15ca.chunk.js.map",
+    "414.947615c6.chunk.js.map": "/gamenews/static/js/414.947615c6.chunk.js.map",
     "641.5d758c0f.chunk.js.map": "/gamenews/static/js/641.5d758c0f.chunk.js.map",
-    "360.61724911.chunk.js.map": "/gamenews/static/js/360.61724911.chunk.js.map",
+    "360.684a9939.chunk.js.map": "/gamenews/static/js/360.684a9939.chunk.js.map",
     "703.b4cd0688.chunk.js.map": "/gamenews/static/js/703.b4cd0688.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3515ca5d.css",
-    "static/js/main.21480847.js"
+    "static/js/main.e25698dd.js"
   ]
 }
