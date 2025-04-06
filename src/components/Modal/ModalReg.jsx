@@ -45,6 +45,7 @@ const RegistrationModal = ({ setOpenReg }) => {
     console.log(dataForm);
     localStorage.setItem('data', JSON.stringify(dataForm));
     handleClickClose();
+    window.location.reload()
   };
 
   return (

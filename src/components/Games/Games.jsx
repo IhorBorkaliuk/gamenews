@@ -17,6 +17,8 @@ export const Games = ({ games }) => {
     setLoadedGames(prevState => prevState + 20);
   };
 
+
+
   const handleFilterChange = option => {
     setSelectedGenre(option);
     setLoadedGames(20);

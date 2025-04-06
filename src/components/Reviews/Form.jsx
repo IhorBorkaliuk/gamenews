@@ -33,9 +33,14 @@ export const CommentForm = ({ onSubmit }) => {
     localStorage.removeItem('review')
   };
 
+  const {login} = JSON.parse(localStorage.getItem('data') || {})
+
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
+        <p>
+          <b>{login}</b>
+        </p>
         <TextArea onChange={handleTextChange} value={text} />
         <SubmitButton type="submit">Відправити</SubmitButton>
       </form>
