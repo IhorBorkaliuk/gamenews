@@ -63,7 +63,7 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
             <>
               <LoginButton onClick={handleClickOpen}>Login</LoginButton>
               <RegisterButton onClick={handleClickOpenReg}>
-                Sign In
+                Sign Up
               </RegisterButton>
             </>
           )}

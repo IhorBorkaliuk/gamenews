@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   ModalOverlay,
@@ -11,10 +11,10 @@ import {
   SubmitButton,
   CancelButton,
 } from './ModalAuthStyled';
+import { useUserContext } from './UserContext';
 
 export const AuthModal = ({ setOpen, setIsLoggedIn }) => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+    const { login, setLogin, password, setPassword } = useUserContext()
 
   const handleChangeLogin = evt => {
     setLogin(evt.target.value);
