@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import AuthModal from 'components/Modal/AuthModal';
-import RegistrationModal from 'components/Modal/ModalReg';
+import RegistrationModal from 'components/Modal/RegModal';
 import {
   RegisterButton,
   LoginButton,

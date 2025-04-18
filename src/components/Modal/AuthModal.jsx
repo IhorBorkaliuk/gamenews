@@ -11,10 +11,10 @@ import {
   SubmitButton,
   CancelButton,
 } from './ModalAuthStyled';
-import { useUserContext } from './UserContext';
+import { useStore } from './Store';
 
 export const AuthModal = ({ setOpen, setIsLoggedIn }) => {
-    const { login, setLogin, password, setPassword } = useUserContext()
+  const { login, setLogin, password, setPassword } = useStore();
 
   const handleChangeLogin = evt => {
     setLogin(evt.target.value);
