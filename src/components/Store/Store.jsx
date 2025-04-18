@@ -7,5 +7,9 @@ export const useStore = create(set => ({
   email: '',
   setLogin: (login) => set({login}),
   setPassword: (password) => set({password}),
-  setEmail: (email => set({email})),
+  setEmail: (email => set({ email })),
+  games: [],
+  setGames: (games) => set({ games }),
+  comments: [],
+  setComments: (comments) => set({comments})
 }));

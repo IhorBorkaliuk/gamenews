@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Reviews from 'components/Reviews/Reviews';
+import React, { useState, useEffect } from 'react';
+import CommentForm from 'components/Reviews/Form';
 import {
   ImageGame,
   DescriptionGame,
@@ -10,9 +10,16 @@ import {
   Title,
 } from './GamePageStyed';
 import { useLocation } from 'react-router';
+import {
+  ReviewItem,
+  ReviewText,
+  ReviewTitle,
+} from 'components/Reviews/ReviewsStyled';
+import { DeleteButton } from 'components/Reviews/ReviewsStyled';
 
-const GamePage = ({ isLoggedIn, games }) => {
-  const location = useLocation();
+const GamePage = ({ isLoggedIn }) => {
+const [comments, setComments] = useState([]);  
+const location = useLocation();
   const { state } = location;
   const {
     title,
@@ -23,25 +30,53 @@ const GamePage = ({ isLoggedIn, games }) => {
     developer,
     release_date,
     game_url,
+    id,
   } = state;
   const [favourites, setFavourite] = useState(() => {
-  return  JSON.parse(localStorage.getItem('favourite')) ?? []
-  }
-  );
+    return JSON.parse(localStorage.getItem('favourite')) ?? [];
+  });
+  console.log(id);
 
   const addToFavourite = () => {
-    const updatedFavourites = [...favourites, title]; 
-    setFavourite(updatedFavourites); 
-    localStorage.setItem('favourite', JSON.stringify(updatedFavourites)); 
+    const updatedFavourites = [...favourites, title];
+    setFavourite(updatedFavourites);
+    localStorage.setItem('favourite', JSON.stringify(updatedFavourites));
   };
 
   const deleteFromFavourite = () => {
-    const updatedFavourites = favourites.filter(item => item !== title); 
-    setFavourite(updatedFavourites); 
-    localStorage.setItem('favourite', JSON.stringify(updatedFavourites)); 
+    const updatedFavourites = favourites.filter(item => item !== title);
+    setFavourite(updatedFavourites);
+    localStorage.setItem('favourite', JSON.stringify(updatedFavourites));
   };
 
   const isInFavourite = favourites.includes(title);
+
+useEffect(() => {
+  const getComment = id => {
+    const isComment = JSON.parse(localStorage.getItem('comment')) || [];
+    const findComment = isComment.filter(
+      comment => comment.gameId === id
+    );
+    setComments(findComment);
+  };
+
+  getComment(id);
+}, [id, setComments]);
+  
+  // const handleSubmit = () => {
+
+  // }
+
+
+const handleDelete = gameId => {
+  const updatedComments = comments.filter(el => el.id !== gameId);
+  setComments(updatedComments);
+
+  const stored = JSON.parse(localStorage.getItem('comment')) || [];
+  const updatedStored = stored.filter(el => el.id !== gameId);
+  localStorage.setItem('comment', JSON.stringify(updatedStored));
+};
+
 
   return (
     <WrapperGamePage>
@@ -68,7 +103,18 @@ const GamePage = ({ isLoggedIn, games }) => {
           {game_url}
         </a>
       </ParagraphGame>
-      {isLoggedIn && <Reviews games={games} />}
+      {comments.length > 0
+        ? comments.map((el, id) => (
+            <ReviewItem key={id}>
+              <DeleteButton onClick={() => handleDelete(el.id)}>
+                X
+              </DeleteButton>
+              <ReviewTitle>{el.game}</ReviewTitle>
+              <ReviewText>{el.review}</ReviewText>
+            </ReviewItem>
+        ))
+        : null}
+      {isLoggedIn && <CommentForm />}
     </WrapperGamePage>
   );
 };

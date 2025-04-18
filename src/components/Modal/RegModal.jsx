@@ -10,7 +10,7 @@ import {
   Input,
   SubmitButton,
 } from './ModalRegStyled';
-import { useStore } from './Store';
+import { useStore } from '../Store/Store';
 
 const RegistrationModal = ({ setOpenReg }) => {
   const { login, setLogin, password, setPassword, email, setEmail } =
@@ -43,7 +43,7 @@ const RegistrationModal = ({ setOpenReg }) => {
       password,
       email,
     };
-    
+
     console.log(dataForm);
     localStorage.setItem('data', JSON.stringify(dataForm));
     handleClickClose();

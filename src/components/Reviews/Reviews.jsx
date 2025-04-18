@@ -9,12 +9,11 @@ import {
   DeleteButton,
 } from './ReviewsStyled';
 
-export const Reviews = ({ games }) => {
+export const Reviews = () => {
   const getReviews = () => {
     const savedComments = localStorage.getItem('comment');
     return savedComments ? JSON.parse(savedComments) : [];
   };
-
   const [reviews, setReviews] = useState(getReviews);
 
   const handleSubmit = data => {
@@ -42,7 +41,7 @@ export const Reviews = ({ games }) => {
           ))}
         </ReviewsGrid>
       )}
-      <CommentForm games={games} onSubmit={handleSubmit} />
+      <CommentForm onSubmit={handleSubmit} />
     </ReviewsContainer>
   );
 };

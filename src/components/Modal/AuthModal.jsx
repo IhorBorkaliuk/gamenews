@@ -11,7 +11,7 @@ import {
   SubmitButton,
   CancelButton,
 } from './ModalAuthStyled';
-import { useStore } from './Store';
+import { useStore } from '../Store/Store';
 
 export const AuthModal = ({ setOpen, setIsLoggedIn }) => {
   const { login, setLogin, password, setPassword } = useStore();
