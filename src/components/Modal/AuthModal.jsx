@@ -30,7 +30,7 @@ export const AuthModal = ({ setOpen, setIsLoggedIn }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const savedData = localStorage.getItem('data');
+    const savedData = localStorage.getItem('regData');
     if (savedData) {
       const { login: savedLogin, password: savedPassword } =
         JSON.parse(savedData);

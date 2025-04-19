@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CommentForm from 'components/Reviews/CommentForm';
+import CommentForm from 'components/Reviews/CommentGameForm';
 import {
   ImageGame,
   DescriptionGame,
@@ -14,8 +14,8 @@ import {
   ReviewItem,
   ReviewText,
   ReviewTitle,
-} from 'components/Reviews/ReviewsStyled';
-import { DeleteButton } from 'components/Reviews/ReviewsStyled';
+} from 'components/Reviews/AllCommentsGameStyled';
+import { DeleteButton } from 'components/Reviews/AllCommentsGameStyled';
 const GamePage = ({ isLoggedIn }) => {
   const [comments, setComments] = useState([]);
   const location = useLocation();
@@ -52,7 +52,7 @@ const GamePage = ({ isLoggedIn }) => {
 
   useEffect(() => {
     const getComment = id => {
-      const isComment = JSON.parse(localStorage.getItem('comment')) || [];
+      const isComment = JSON.parse(localStorage.getItem('commentGame')) || [];
       const findComment = isComment.filter(comment => comment.gameId === id);
       setComments(findComment);
     };
@@ -60,25 +60,25 @@ const GamePage = ({ isLoggedIn }) => {
     getComment(id);
   }, [id, setComments]);
 
-const handleSubmit = newComment => {
-  const storedComment = localStorage.getItem('comment');
-  const parsedComments = storedComment ? JSON.parse(storedComment) : [];
+  const handleSubmit = newComment => {
+    const storedComment = localStorage.getItem('commentGame');
+    const parsedComments = storedComment ? JSON.parse(storedComment) : [];
 
-  const updatedComment = [...parsedComments, newComment];
-  localStorage.setItem('comment', JSON.stringify(updatedComment));
+    const updatedComment = [...parsedComments, newComment];
+    localStorage.setItem('commentGame', JSON.stringify(updatedComment));
 
-  if (newComment.gameId === id) {
-    setComments(prev => [...prev, newComment]);
-  }
-};
+    if (newComment.gameId === id) {
+      setComments(prev => [...prev, newComment]);
+    }
+  };
 
   const handleDelete = gameId => {
     const updatedComments = comments.filter(el => el.id !== gameId);
     setComments(updatedComments);
 
-    const stored = JSON.parse(localStorage.getItem('comment')) || [];
+    const stored = JSON.parse(localStorage.getItem('commentGame')) || [];
     const updatedStored = stored.filter(el => el.id !== gameId);
-    localStorage.setItem('comment', JSON.stringify(updatedStored));
+    localStorage.setItem('commentGame', JSON.stringify(updatedStored));
   };
 
   return (

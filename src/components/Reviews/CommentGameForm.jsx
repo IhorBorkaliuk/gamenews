@@ -5,7 +5,7 @@ import { useLocation } from 'react-router';
 
 export const CommentForm = ({ onSubmit }) => {
   const [text, setText] = useState(() => {
-    const savedText = localStorage.getItem('review');
+    const savedText = localStorage.getItem('gameReview');
     return savedText ? JSON.parse(savedText) : '';
   });
 
@@ -13,12 +13,12 @@ export const CommentForm = ({ onSubmit }) => {
   const { state } = location
   const { id } = state
   
-  const { login } = JSON.parse(localStorage.getItem('data') || {});
+  const { login } = JSON.parse(localStorage.getItem('regData') || {});
 
   const handleTextChange = evt => {
     const value = evt.target.value;
     setText(value);
-    localStorage.setItem('review', JSON.stringify(value));
+    localStorage.setItem('gameReview', JSON.stringify(value));
   };
 
   const handleSubmit = evt => {
@@ -35,9 +35,8 @@ export const CommentForm = ({ onSubmit }) => {
     };
     setText('');
     onSubmit(newComment);
-    localStorage.removeItem('review');
+    localStorage.removeItem('gameReview');
   };
-
 
   return (
     <FormContainer>

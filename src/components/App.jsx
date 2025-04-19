@@ -13,7 +13,7 @@ const GamePage = lazy(() => import('./GamePage/GamePage'));
 
 export const App = () => {
   const [games, setGames] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('data') || false)
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('regData') || false)
 
   useEffect(() => {
     const loadGames = async () => {

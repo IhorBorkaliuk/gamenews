@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import CommentForm from './CommentForm';
+import {CommentForm} from './CommentGameForm';
 import {
   ReviewsContainer,
   ReviewsGrid,
@@ -7,11 +7,11 @@ import {
   ReviewTitle,
   ReviewText,
   DeleteButton,
-} from './ReviewsStyled';
+} from './AllCommentsGameStyled';
 
 export const Reviews = () => {
   const getReviews = () => {
-    const savedComments = localStorage.getItem('comment');
+    const savedComments = localStorage.getItem('commentGame');
     return savedComments ? JSON.parse(savedComments) : [];
   };
   const [reviews, setReviews] = useState(getReviews);
@@ -25,7 +25,7 @@ export const Reviews = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('comment', JSON.stringify(reviews));
+    localStorage.setItem('commentGame', JSON.stringify(reviews));
   }, [reviews]);
 
   return (

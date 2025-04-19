@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router';
 import DOMPurify from 'dompurify';
 import { Image, Title, Wrapper, Paragraph, Link } from './PostPageStyled';
-import { ReviewForm } from 'components/Reviews/ReviewForm';
+import CommentPostForm from 'components/Reviews/CommentPostForm';
 
 const PostPage = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ const PostPage = () => {
           {state.article_url}
         </Link>
       </Paragraph>
-      <ReviewForm></ReviewForm>
+      <CommentPostForm></CommentPostForm>
     </Wrapper>
   );
 };

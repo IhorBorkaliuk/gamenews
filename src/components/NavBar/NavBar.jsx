@@ -18,7 +18,7 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
   const [login, setLogin] = useState('');
 
   useEffect(() => {
-    const getName = localStorage.getItem('data');
+    const getName = localStorage.getItem('regData');
     if (getName) {
       const { login } = JSON.parse(getName);
       setLogin(login || '');
