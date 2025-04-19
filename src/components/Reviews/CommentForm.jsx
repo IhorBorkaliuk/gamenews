@@ -13,6 +13,7 @@ export const CommentForm = ({ onSubmit }) => {
   const { state } = location
   const { id } = state
   
+  const { login } = JSON.parse(localStorage.getItem('data') || {});
 
   const handleTextChange = evt => {
     const value = evt.target.value;
@@ -26,17 +27,17 @@ export const CommentForm = ({ onSubmit }) => {
       alert('Fill up all the fields!');
       return;
     }
-    const formData = {
+    const newComment = {
       review: text,
       id: uuidv4(),
-      gameId: id
+      gameId: id,
+      login: login,
     };
     setText('');
-    onSubmit(formData);
+    onSubmit(newComment);
     localStorage.removeItem('review');
   };
 
-  const { login } = JSON.parse(localStorage.getItem('data') || {});
 
   return (
     <FormContainer>
@@ -44,7 +45,7 @@ export const CommentForm = ({ onSubmit }) => {
         <p>
           <b>{login}</b>
         </p>
-        <TextArea onChange={handleTextChange} value={text} />
+        <TextArea onChange={handleTextChange} value={text} placeholder='Write your review here...'/>
         <SubmitButton type="submit">Відправити</SubmitButton>
       </form>
     </FormContainer>

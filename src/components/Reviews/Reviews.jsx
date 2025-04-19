@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import CommentForm from './Form';
+import CommentForm from './CommentForm';
 import {
   ReviewsContainer,
   ReviewsGrid,
@@ -20,8 +20,8 @@ export const Reviews = () => {
     setReviews(prevState => [...prevState, data]);
   };
 
-  const handleDelete = (id) => {
-    setReviews(reviews.filter(el => el.id !== id))
+  const handleDelete = id => {
+    setReviews(reviews.filter(el => el.id !== id));
   };
 
   useEffect(() => {
@@ -34,7 +34,9 @@ export const Reviews = () => {
         <ReviewsGrid>
           {reviews.map((review, index) => (
             <ReviewItem key={index}>
-              <DeleteButton onClick={() => handleDelete(review.id)}>X</DeleteButton>
+              <DeleteButton onClick={() => handleDelete(review.id)}>
+                X
+              </DeleteButton>
               <ReviewTitle>{review.game}</ReviewTitle>
               <ReviewText>{review.review}</ReviewText>
             </ReviewItem>

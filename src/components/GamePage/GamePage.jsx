@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CommentForm from 'components/Reviews/Form';
+import CommentForm from 'components/Reviews/CommentForm';
 import {
   ImageGame,
   DescriptionGame,
@@ -16,10 +16,9 @@ import {
   ReviewTitle,
 } from 'components/Reviews/ReviewsStyled';
 import { DeleteButton } from 'components/Reviews/ReviewsStyled';
-
 const GamePage = ({ isLoggedIn }) => {
-const [comments, setComments] = useState([]);  
-const location = useLocation();
+  const [comments, setComments] = useState([]);
+  const location = useLocation();
   const { state } = location;
   const {
     title,
@@ -51,32 +50,34 @@ const location = useLocation();
 
   const isInFavourite = favourites.includes(title);
 
-useEffect(() => {
-  const getComment = id => {
-    const isComment = JSON.parse(localStorage.getItem('comment')) || [];
-    const findComment = isComment.filter(
-      comment => comment.gameId === id
-    );
-    setComments(findComment);
+  useEffect(() => {
+    const getComment = id => {
+      const isComment = JSON.parse(localStorage.getItem('comment')) || [];
+      const findComment = isComment.filter(comment => comment.gameId === id);
+      setComments(findComment);
+    };
+
+    getComment(id);
+  }, [id, setComments]);
+
+  const handleSubmit = newComment => {
+    const storedComment = JSON.parse(localStorage.getItem('comment') || []);
+    const updatedComment = [...storedComment, newComment];
+    localStorage.setItem('comment', JSON.stringify(updatedComment));
+
+    if (newComment.gameId === id) {
+      setComments(prev => [...prev, newComment]);
+    }
   };
 
-  getComment(id);
-}, [id, setComments]);
-  
-  // const handleSubmit = () => {
+  const handleDelete = gameId => {
+    const updatedComments = comments.filter(el => el.id !== gameId);
+    setComments(updatedComments);
 
-  // }
-
-
-const handleDelete = gameId => {
-  const updatedComments = comments.filter(el => el.id !== gameId);
-  setComments(updatedComments);
-
-  const stored = JSON.parse(localStorage.getItem('comment')) || [];
-  const updatedStored = stored.filter(el => el.id !== gameId);
-  localStorage.setItem('comment', JSON.stringify(updatedStored));
-};
-
+    const stored = JSON.parse(localStorage.getItem('comment')) || [];
+    const updatedStored = stored.filter(el => el.id !== gameId);
+    localStorage.setItem('comment', JSON.stringify(updatedStored));
+  };
 
   return (
     <WrapperGamePage>
@@ -106,15 +107,14 @@ const handleDelete = gameId => {
       {comments.length > 0
         ? comments.map((el, id) => (
             <ReviewItem key={id}>
-              <DeleteButton onClick={() => handleDelete(el.id)}>
-                X
-              </DeleteButton>
+              <b>{el.login}</b>
+              <DeleteButton onClick={() => handleDelete(el.id)}>X</DeleteButton>
               <ReviewTitle>{el.game}</ReviewTitle>
               <ReviewText>{el.review}</ReviewText>
             </ReviewItem>
-        ))
+          ))
         : null}
-      {isLoggedIn && <CommentForm />}
+      {isLoggedIn && <CommentForm onSubmit={handleSubmit} />}
     </WrapperGamePage>
   );
 };
