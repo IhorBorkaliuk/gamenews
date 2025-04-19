@@ -60,15 +60,17 @@ const GamePage = ({ isLoggedIn }) => {
     getComment(id);
   }, [id, setComments]);
 
-  const handleSubmit = newComment => {
-    const storedComment = JSON.parse(localStorage.getItem('comment') || []);
-    const updatedComment = [...storedComment, newComment];
-    localStorage.setItem('comment', JSON.stringify(updatedComment));
+const handleSubmit = newComment => {
+  const storedComment = localStorage.getItem('comment');
+  const parsedComments = storedComment ? JSON.parse(storedComment) : [];
 
-    if (newComment.gameId === id) {
-      setComments(prev => [...prev, newComment]);
-    }
-  };
+  const updatedComment = [...parsedComments, newComment];
+  localStorage.setItem('comment', JSON.stringify(updatedComment));
+
+  if (newComment.gameId === id) {
+    setComments(prev => [...prev, newComment]);
+  }
+};
 
   const handleDelete = gameId => {
     const updatedComments = comments.filter(el => el.id !== gameId);
