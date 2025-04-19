@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CommentPostForm from './CommentPostForm';
+import {CommentPostForm} from './CommentPostForm';
 import {
   ReviewItem,
   ReviewsContainer,
@@ -13,9 +13,6 @@ export const AllCommentsPosts = () => {
     return savedComments ? JSON.parse(savedComments) : [];
   });
 
-  const handlePostSubmit = data => {
-    setCommentsPost(prevState => [...prevState, data]);
-  };
 
   const handleDelete = id => {
     setCommentsPost(commentsPost.filter(el => el.id !== id));
@@ -33,7 +30,6 @@ export const AllCommentsPosts = () => {
           <ReviewTitle>{post.postId}</ReviewTitle>
         </ReviewItem>
       ))}
-      <CommentPostForm onSubmit={handlePostSubmit} />
     </ReviewsContainer>
   );
 };

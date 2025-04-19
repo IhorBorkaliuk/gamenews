@@ -3,7 +3,7 @@ import { TextArea, SubmitButton, FormContainer } from './FormStyled';
 import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router';
 
-const CommentPostForm = ({ onSubmit }) => {
+export const CommentPostForm = ({ onSubmit }) => {
   const [textPost, setTextPost] = useState(() => {
     const savedText = localStorage.getItem('commentPost');
     return savedText ? JSON.parse(savedText) : '';

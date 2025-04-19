@@ -16,9 +16,6 @@ export const Reviews = () => {
   };
   const [reviews, setReviews] = useState(getReviews);
 
-  const handleSubmit = data => {
-    setReviews(prevState => [...prevState, data]);
-  };
 
   const handleDelete = id => {
     setReviews(reviews.filter(el => el.id !== id));
@@ -43,7 +40,6 @@ export const Reviews = () => {
           ))}
         </ReviewsGrid>
       )}
-      <CommentForm onSubmit={handleSubmit} />
     </ReviewsContainer>
   );
 };
