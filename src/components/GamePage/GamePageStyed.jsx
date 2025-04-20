@@ -151,3 +151,64 @@ export const DeleteButton = styled.button`
     background-color: #333;
   }
 `;
+
+export const ReactionButton = styled.button`
+  background: ${({ active }) =>
+    active
+      ? 'linear-gradient(145deg, #d2ffe2, #a6f4c5)'
+      : 'linear-gradient(145deg, #ffffff, #e6e6e6)'};
+  color: ${({ active }) => (active ? '#2e7d32' : '#444')};
+  border: none;
+  border-radius: 16px;
+  padding: 14px 22px;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: ${({ active }) =>
+    active
+      ? '0 8px 16px rgba(46, 125, 50, 0.25)'
+      : '0 6px 12px rgba(0, 0, 0, 0.05)'};
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  & .icon {
+    font-size: 26px;
+  }
+`;
+
+
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 0;
+`;
+
+
+export const ReactionCount = styled.span`
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  margin-top: 8px;
+`;
+
+export const ReactionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+`;

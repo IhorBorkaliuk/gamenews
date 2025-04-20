@@ -13,9 +13,23 @@ import {
   ReviewTitle,
   ReviewText,
 } from './GamePageStyed';
+import {
+  ReactionButton,
+  ButtonWrapper,
+  ReactionWrapper,
+  ReactionCount,
+} from './GamePageStyed';
 import { useLocation } from 'react-router';
 const GamePage = ({ isLoggedIn }) => {
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState(() => {
+    const savedLikes = localStorage.getItem('likes');
+    return savedLikes ? JSON.parse(savedLikes) : 0;
+  });
+  const [dislikes, setDislikes] = useState(() => {
+    const savedDislikes = localStorage.getItem('dislikes');
+    return savedDislikes ? JSON.parse(savedDislikes) : 0;
+  });
   const location = useLocation();
   const { state } = location;
   const {
@@ -79,6 +93,22 @@ const GamePage = ({ isLoggedIn }) => {
     localStorage.setItem('commentGame', JSON.stringify(updatedStored));
   };
 
+  const addLike = () => {
+    setLikes(prev => prev + 1);
+  };
+
+  const addDislike = () => {
+    setDislikes(prev => prev + 1);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('likes', JSON.stringify(likes));
+  }, [likes]);
+
+  useEffect(() => {
+    localStorage.setItem('dislikes', JSON.stringify(dislikes));
+  }, [dislikes]);
+
   return (
     <WrapperGamePage>
       {isLoggedIn &&
@@ -114,6 +144,16 @@ const GamePage = ({ isLoggedIn }) => {
             </ReviewItem>
           ))
         : null}
+      <ButtonWrapper>
+        <ReactionWrapper>
+          <ReactionButton onClick={addLike}>👍</ReactionButton>
+          <ReactionCount>{likes}</ReactionCount>
+        </ReactionWrapper>
+        <ReactionWrapper>
+          <ReactionButton onClick={addDislike}>👎</ReactionButton>
+          <ReactionCount>{dislikes}</ReactionCount>
+        </ReactionWrapper>
+      </ButtonWrapper>
       {isLoggedIn && <CommentForm onSubmit={handleSubmit} />}
     </WrapperGamePage>
   );

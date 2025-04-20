@@ -21,10 +21,11 @@ const PostPage = () => {
   const location = useLocation();
   console.log(location);
   const { state } = location;
-  console.log(state);
 
   const { id } = useParams()
-  console.log(id);
+
+  const {login} = JSON.parse(localStorage.getItem('regData'))
+  console.log(login);
 
   const article = state.article_content;
   const cleanText = DOMPurify.sanitize(article, { ALLOWED_TAGS: [] });
@@ -69,12 +70,13 @@ const PostPage = () => {
           {state.article_url}
         </Link>
       </Paragraph>
-            {commentsPost.map((post, index) => (
-              <ReviewItem key={index}>
-                <DeleteButton onClick={() => handleDelete(post.id)}>X</DeleteButton>
-                <ReviewTitle>{post.post}</ReviewTitle>
-              </ReviewItem>
-            ))}
+      {commentsPost.map((post, index) => (
+        <ReviewItem key={index}>
+          <b>{login}</b>
+          <DeleteButton onClick={() => handleDelete(post.id)}>X</DeleteButton>
+          <ReviewTitle>{post.post}</ReviewTitle>
+        </ReviewItem>
+      ))}
       <CommentPostForm onSubmit={handlesubmit}></CommentPostForm>
     </Wrapper>
   );
