@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/gamenews/static/css/main.3515ca5d.css",
-    "main.js": "/gamenews/static/js/main.c0751dca.js",
+    "main.js": "/gamenews/static/js/main.befb9b07.js",
     "static/js/390.2c82770f.chunk.js": "/gamenews/static/js/390.2c82770f.chunk.js",
-    "static/js/838.aead204d.chunk.js": "/gamenews/static/js/838.aead204d.chunk.js",
+    "static/js/838.8cdcbe43.chunk.js": "/gamenews/static/js/838.8cdcbe43.chunk.js",
     "static/js/216.79a19c1e.chunk.js": "/gamenews/static/js/216.79a19c1e.chunk.js",
     "static/js/414.947615c6.chunk.js": "/gamenews/static/js/414.947615c6.chunk.js",
     "static/js/641.5d758c0f.chunk.js": "/gamenews/static/js/641.5d758c0f.chunk.js",
-    "static/js/174.f6d2700b.chunk.js": "/gamenews/static/js/174.f6d2700b.chunk.js",
+    "static/js/174.9dfba896.chunk.js": "/gamenews/static/js/174.9dfba896.chunk.js",
     "static/js/144.b5f98cd3.chunk.js": "/gamenews/static/js/144.b5f98cd3.chunk.js",
     "index.html": "/gamenews/index.html",
     "main.3515ca5d.css.map": "/gamenews/static/css/main.3515ca5d.css.map",
-    "main.c0751dca.js.map": "/gamenews/static/js/main.c0751dca.js.map",
+    "main.befb9b07.js.map": "/gamenews/static/js/main.befb9b07.js.map",
     "390.2c82770f.chunk.js.map": "/gamenews/static/js/390.2c82770f.chunk.js.map",
-    "838.aead204d.chunk.js.map": "/gamenews/static/js/838.aead204d.chunk.js.map",
+    "838.8cdcbe43.chunk.js.map": "/gamenews/static/js/838.8cdcbe43.chunk.js.map",
     "216.79a19c1e.chunk.js.map": "/gamenews/static/js/216.79a19c1e.chunk.js.map",
     "414.947615c6.chunk.js.map": "/gamenews/static/js/414.947615c6.chunk.js.map",
     "641.5d758c0f.chunk.js.map": "/gamenews/static/js/641.5d758c0f.chunk.js.map",
-    "174.f6d2700b.chunk.js.map": "/gamenews/static/js/174.f6d2700b.chunk.js.map",
+    "174.9dfba896.chunk.js.map": "/gamenews/static/js/174.9dfba896.chunk.js.map",
     "144.b5f98cd3.chunk.js.map": "/gamenews/static/js/144.b5f98cd3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3515ca5d.css",
-    "static/js/main.c0751dca.js"
+    "static/js/main.befb9b07.js"
   ]
 }
