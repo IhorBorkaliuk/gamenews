@@ -1,16 +1,57 @@
-import React from 'react';
-import { useLocation } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router';
 import DOMPurify from 'dompurify';
-import { Image, Title, Wrapper, Paragraph, Link } from './PostPageStyled';
+import {
+  Image,
+  Title,
+  Wrapper,
+  Paragraph,
+  Link,
+  ReviewItem,
+  DeleteButton,
+  ReviewTitle,
+} from './PostPageStyled';
 import CommentPostForm from 'components/Reviews/CommentPostForm';
 
 const PostPage = () => {
+  const [commentsPost, setCommentsPost] = useState(() => {
+    const savedComments = localStorage.getItem('commentsPost');
+    return savedComments ? JSON.parse(savedComments) : [];
+  });
   const location = useLocation();
+  console.log(location);
   const { state } = location;
   console.log(state);
 
+  const { id } = useParams()
+  console.log(id);
+
   const article = state.article_content;
   const cleanText = DOMPurify.sanitize(article, { ALLOWED_TAGS: [] });
+
+      useEffect(() => {
+        const storedComments = localStorage.getItem(`commentsPost_${id}`);
+        if (storedComments) {
+          setCommentsPost(JSON.parse(storedComments))
+        }
+      }, [id]);
+
+  const handlesubmit = newComment => {
+    const updatedComments = [...commentsPost, newComment]
+    setCommentsPost(updatedComments)
+    localStorage.setItem(`commentsPost_${id}`, JSON.stringify(updatedComments));
+  }
+
+    const handleDelete = commentID => {
+      const updatedComments = commentsPost.filter(post => post.id !== commentID)
+      setCommentsPost(updatedComments)
+      localStorage.setItem(
+        `commentsPost_${id}`,
+        JSON.stringify(updatedComments)
+      );
+  };
+  
+
 
   return (
     <Wrapper>
@@ -28,7 +69,13 @@ const PostPage = () => {
           {state.article_url}
         </Link>
       </Paragraph>
-      <CommentPostForm></CommentPostForm>
+            {commentsPost.map((post, index) => (
+              <ReviewItem key={index}>
+                <DeleteButton onClick={() => handleDelete(post.id)}>X</DeleteButton>
+                <ReviewTitle>{post.post}</ReviewTitle>
+              </ReviewItem>
+            ))}
+      <CommentPostForm onSubmit={handlesubmit}></CommentPostForm>
     </Wrapper>
   );
 };

@@ -8,14 +8,12 @@ import {
   AlreadyInFavoritesButton,
   WrapperGamePage,
   Title,
+  DeleteButton,
+  ReviewItem,
+  ReviewTitle,
+  ReviewText,
 } from './GamePageStyed';
 import { useLocation } from 'react-router';
-import {
-  ReviewItem,
-  ReviewText,
-  ReviewTitle,
-} from 'components/Reviews/AllCommentsGameStyled';
-import { DeleteButton } from 'components/Reviews/AllCommentsGameStyled';
 const GamePage = ({ isLoggedIn }) => {
   const [comments, setComments] = useState([]);
   const location = useLocation();

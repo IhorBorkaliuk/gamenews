@@ -16,7 +16,7 @@ export const PostCard = ({ el }) => {
         alt={el.short_description}
       />
       <StyledNavLink
-        to={`/${el.id}`}
+        to={`/posts/${el.id}`}
         state={el}
         rel="noopener noreferrer"
         className="stretched-link"

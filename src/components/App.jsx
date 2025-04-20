@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router';
 import NavBar from './NavBar/NavBar';
 import LoaderExampleInlineCentered from './Loader/Loader';
 import { APIGames } from 'services/API'; 
+import { Navigate } from 'react-router';
 
 const PostsList = lazy(() => import('./PostsList/PostsList'));
 const PostPage = lazy(() => import('./PostPage/PostPage'));
@@ -32,13 +33,17 @@ export const App = () => {
       <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Suspense fallback={<LoaderExampleInlineCentered />}>
         <Routes>
-          <Route path="/" element={<PostsList />} />
-          <Route path="/:id" element={<PostPage />} />
+          <Route path="/" element={<Navigate to="/posts" replace />} />
+          <Route path="/posts/" element={<PostsList />} />
+          <Route path="/posts/:id" element={<PostPage />} />
           <Route
             path="/games"
             element={<Games games={games} setGames={setGames} />}
           />
-          <Route path="/games/:id" element={<GamePage isLoggedIn={isLoggedIn} games={games} />} />
+          <Route
+            path="/games/:id"
+            element={<GamePage isLoggedIn={isLoggedIn} games={games} />}
+          />
           <Route path="/giveaways" element={<Giveaways />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

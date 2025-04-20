@@ -111,4 +111,43 @@ export const AlreadyInFavoritesButton = styled.button`
     cursor: not-allowed; /* Забороняє натискання */
     background-color: #388e3c; /* Темніший зелений */
   }
-`;;
+  
+` ;
+
+export const ReviewItem = styled.div`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Для розташування кнопки */
+`;
+
+export const ReviewTitle = styled.h1`
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+`;
+
+export const ReviewText = styled.p`
+  font-size: 16px;
+  color: #666;
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #333;
+  }
+`;
