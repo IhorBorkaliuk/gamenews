@@ -21,28 +21,27 @@ import {
 } from './GamePageStyed';
 import { useLocation } from 'react-router';
 const GamePage = ({ isLoggedIn }) => {
+      const location = useLocation();
+      const { state } = location;
+      const {
+        title,
+        thumbnail,
+        short_description,
+        genre,
+        platform,
+        developer,
+        release_date,
+        game_url,
+        id,
+      } = state;
   const [comments, setComments] = useState([]);
-  const [likes, setLikes] = useState(() => {
-    const savedLikes = localStorage.getItem('likes');
-    return savedLikes ? JSON.parse(savedLikes) : 0;
+  const [reactions, setReactions] = useState(() => {
+    const storedReactions = JSON.parse(localStorage.getItem('reactions')) || {};
+    return storedReactions[id] || {likes: 0, dislikes: 0}
   });
-  const [dislikes, setDislikes] = useState(() => {
-    const savedDislikes = localStorage.getItem('dislikes');
-    return savedDislikes ? JSON.parse(savedDislikes) : 0;
-  });
-  const location = useLocation();
-  const { state } = location;
-  const {
-    title,
-    thumbnail,
-    short_description,
-    genre,
-    platform,
-    developer,
-    release_date,
-    game_url,
-    id,
-  } = state;
+
+    const { likes, dislikes } = reactions;
+
   const [favourites, setFavourite] = useState(() => {
     return JSON.parse(localStorage.getItem('favourite')) ?? [];
   });
@@ -94,11 +93,21 @@ const GamePage = ({ isLoggedIn }) => {
   };
 
   const addLike = () => {
-    setLikes(prev => prev + 1);
+    const updated = { ...reactions, likes: reactions.likes + 1 };
+    setReactions(updated)
+
+    const stored = JSON.parse(localStorage.getItem('reactions')) || {}
+    stored[id] = updated
+    localStorage.setItem('reactions', JSON.stringify(stored))
   };
 
   const addDislike = () => {
-    setDislikes(prev => prev + 1);
+       const updated = { ...reactions, dislikes: reactions.dislikes + 1 };
+       setReactions(updated);
+
+       const stored = JSON.parse(localStorage.getItem('reactions')) || {};
+       stored[id] = updated;
+       localStorage.setItem('reactions', JSON.stringify(stored));
   };
 
   useEffect(() => {
